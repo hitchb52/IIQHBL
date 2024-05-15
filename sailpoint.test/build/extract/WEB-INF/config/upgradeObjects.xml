@@ -1,0 +1,387 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE sailpoint PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+
+<!-- (c) Copyright 2020 SailPoint Technologies, Inc., All Rights Reserved. -->
+
+<!--
+  This is used by 'iiq upgrade' to drive upgrading the schema and data between revisions.
+  There are two files that define the upgrade: upgrade.xml and upgradeObjects.xml.
+  upgrade.xml is processed in a special way before Hibernate is started so that changes can be made at the JDBC level.
+  These files should only contain <ImportAction> elements that use the "execute" command to call upgrader classes.
+  *DO NOT PUT STATIC XML OBJECTS IN UPGRADE.XML*
+  upgradeObjects.xml is included by upgrade.xml and will be imported after Hibernate is started. Any changes to objects
+  that can be represented as static XML or as ImportActions with the "merge" command must go in these files to ensure
+  that they are parsed after Hibernate has been started so that references can be resolved.
+-->
+<sailpoint>
+
+  <!--
+     This will reimport some updated objects
+     and should be safe to do for every release.
+   -->
+  <ImportAction name='include' value='WEB-INF/config/authorization.xml' />
+  <ImportAction name='include' value='WEB-INF/config/reportDefinitions.xml' />
+  <ImportAction name='include' value='WEB-INF/config/tasks.xml' />
+  <ImportAction name='include' value='WEB-INF/config/reportTasks.xml' />
+  <ImportAction name='include' value='WEB-INF/config/archiveReports.xml'/>
+  <ImportAction name='include' value='WEB-INF/config/rules.xml' />
+  <ImportAction name='include' value='WEB-INF/config/workflowRules.xml' />
+  <ImportAction name='include' value='WEB-INF/config/workflowSubs.xml' />
+  <ImportAction name='include' value='WEB-INF/config/workflowRegistry.xml' />
+  <ImportAction name='include' value='WEB-INF/config/workflow.xml' />
+  <ImportAction name='include' value='WEB-INF/config/form.xml' />
+  <ImportAction name='include' value='WEB-INF/config/reportForms.xml' />
+  <ImportAction name='include' value='WEB-INF/config/emailtemplates.xml' />
+  <ImportAction name='include' value='WEB-INF/config/defaultPasswordPolicies.xml' />
+  <ImportAction name='include' value='WEB-INF/config/connectorRegistry.xml' />
+  <ImportAction name='include' value='WEB-INF/config/connectorRegistryDeprecated.xml' />
+  <!-- Controlled Availability for Connectors -->
+  <ImportAction name='include' value='WEB-INF/config/connectorRegistryCAConnectors.xml' />
+  <ImportAction name='include' value='WEB-INF/config/reportRules.xml' />
+  <ImportAction name="include" value="WEB-INF/config/lcmForms.xml" />
+  <ImportAction name="include" value="WEB-INF/config/sendEmailPostActionRule.xml" />
+  <ImportAction name="include" value="WEB-INF/config/cefActivityTransformRule.xml" />
+  <ImportAction name="include" value="WEB-INF/config/cefActivityCorrelationRule.xml" />
+  <ImportAction name="include" value="WEB-INF/config/workflowConfigForms.xml" />
+  <!-- Scim configuration -->
+  <ImportAction name='include' value='WEB-INF/config/scimConfiguration.xml' />
+  <!-- Applications Builder Rule XML -->
+  <ImportAction name="include" value="WEB-INF/config/applicationBuilderRule.xml" />
+
+  <ImportAction name='merge'>
+    <UIConfig name='UIConfig'>
+      <Attributes>
+        <Map>
+          <entry key="debugPostCommitNotificationObjectGridColumns">
+            <value>
+              <List>
+                <ColumnConfig dataIndex="subtype" headerKey="Subtype" property="subtype" sortProperty="subtype" sortable="true" width="250"/>
+              </List>
+            </value>
+          </entry>
+          <entry key="uiApprovalListColumns">
+            <value>
+              <List>
+                <ColumnConfig dataIndex="workItemName" property="name" sortable="true" />
+              </List>
+            </value>
+          </entry>
+          <entry key="debugLinkSearchProperties" value="id,displayName,identity.id,identity.name,application.id,application.name" />
+          <entry key="debugLinkGridColumns">
+            <value>
+              <List>
+                <ColumnConfig dataIndex="id" headerKey="Id" property="id" sortProperty="id" width="250" sortable="true" />
+                <ColumnConfig dataIndex="displayName" headerKey="Name" property="displayName" sortProperty="displayName" width="200" sortable="true" />
+                <ColumnConfig dataIndex="identityId" headerKey="Identity Id" property="identity.id" width="250" sortable="false" />
+                <ColumnConfig dataIndex="identityName" headerKey="Identity" property="identity.name" width="250" sortable="false" />
+                <ColumnConfig dataIndex="applicationId" headerKey="Application Id" property="application.id" width="250" sortable="false" />
+                <ColumnConfig dataIndex="applicationName" headerKey="Application" property="application.name" width="250" sortable="false" />
+                <ColumnConfig dataIndex="disabled" headerKey="Disabled" property="iiqDisabled" sortable="false" width="150" />
+                <ColumnConfig dataIndex="created" headerKey="Created" dateStyle="short" property="created" sortProperty="created" width="150" sortable="true" />
+                <ColumnConfig dataIndex="modified" headerKey="Modified" dateStyle="short" property="modified" sortProperty="modified" width="150" sortable="true" />
+              </List>
+            </value>
+          </entry>
+          <entry key="debugNamedTimestampGridColumns">
+            <value>
+              <List>
+                <ColumnConfig dataIndex="id" headerKey="Id" property="id" sortProperty="id" width="250" sortable="true" />
+                <ColumnConfig dataIndex="name" headerKey="Name" property="name" sortProperty="name" width="250" sortable="true" />
+                <ColumnConfig dataIndex="timestamp" headerKey="Timestamp" dateStyle="short" property="timestamp"  sortProperty="timestamp" width="150" sortable="true" />
+                <ColumnConfig dataIndex="created" headerKey="Created" dateStyle="short" property="created" sortProperty="created" width="150" sortable="true" />
+                <ColumnConfig dataIndex="modified" headerKey="Modified" dateStyle="short" property="modified" sortProperty="modified" width="150" sortable="true" />
+              </List>
+            </value>
+          </entry>
+        </Map>
+      </Attributes>
+    </UIConfig>
+  </ImportAction>
+
+  <RequestDefinition name='Expire Sequential Task'
+                     executor='sailpoint.request.ExpireSequentialTaskRequestExecutor'/>
+
+  <ImportAction name="merge">
+    <AuditConfig name='AuditConfig'>
+      <AuditActions>
+        <AuditAction name="DebugObjectBrowserChange" displayName="audit_action_DebugObjectBrowserChange" enabled="true"/>
+        <AuditAction name="InterceptedDeletePruning" displayName="audit_action_intercepted_delete_prune"/>
+        <AuditAction name="AccessHistoryRemoveEvents" displayName="audit_action_accesshistory_remove_events" enabled="true"/>
+        <AuditAction name="PostCommitNotificationObjectPruning" displayName="audit_action_prunePostCommitNotificationObjects"/>
+      </AuditActions>
+    </AuditConfig>
+  </ImportAction>
+
+  <ImportAction name='merge'>
+    <Configuration name="WebResource">
+      <Attributes>
+        <Map>
+          <entry key="webResources">
+            <value>
+              <List>
+                <WebResource rights="FullAccessSystemConfig, FullAccessTimePeriod, FullAccessIdentityMapping, ManageScope, ViewScope, FullAccessAuditConfig, FullAccessLoginConfig, FullAccessAccountMapping, ImportFromFile, FullAccessForms, FullAccessDynamicScope, ViewQuickLinks, FullAccessOAuthClientConfiguration, ViewOAuthClientConfiguration, AccessHistoryFullAccessConfiguration, FullAccessDataExtractConfiguration, FullAccessMessageBusConfiguration" url="systemSetup/index.*">
+                  <ChildResources>
+                    <String>systemSetup/loginConfig.*</String>
+                    <String>systemSetup/identities/identitySourceMappings.*</String>
+                    <String>systemSetup/accounts/accountSourceMapping.*</String>
+                    <String>systemSetup/appObjectConfig.*</String>
+                    <String>systemSetup/appObjectAttribute.*</String>
+                    <String>systemSetup/roleObjectConfig.*</String>
+                    <String>systemSetup/system.*</String>
+                    <String>systemSetup/scopes/*</String>
+                    <String>systemSetup/lcm/*</String>
+                    <String>systemSetup/timePeriods/*</String>
+                    <String>systemSetup/audit.*</String>
+                    <String>systemSetup/electronicSignatures.*</String>
+                    <String>systemSetup/hostConfig.*</String>
+                    <String>systemSetup/import.*</String>
+                    <String>systemSetup/forms.*</String>
+                    <String>systemSetup/objectAttributesDataSource.*</String>
+                    <String>systemSetup/quicklinkPopulationsEditor.*</String>
+                    <String>systemSetup/apiAuthentication.*</String>
+                    <String>systemSetup/accessHistoryConfig.*</String>
+                    <String>systemSetup/dataExtractConfig.*</String>
+                    <String>systemSetup/messageBusConfig.*</String>
+                  </ChildResources>
+                </WebResource>
+                <WebResource rights="FullAccessBeansPage, FullAccessThreadsPage, FullAccessAboutPage, FullAccessMemoryPage, FullAccessMetersPage, FullAccessLoggingPage, FullAccessDatabasePage, FullAccessDebugPage" url="debug/index.*">
+                  <ChildResources>
+                    <String>debug/beans.*</String>
+                    <String>debug/threads.*</String>
+                    <String>debug/about.*</String>
+                    <String>debug/memory.*</String>
+                    <String>debug/meters.*</String>
+                    <String>debug/logging.*</String>
+                    <String>debug/database.*</String>
+                    <String>debug/debug.*</String>
+                    <String>debug/caches.*</String>
+                    <String>debug/activemq.*</String>
+                  </ChildResources>
+                </WebResource>
+                <WebResource rights="ViewAccessBeansPage,FullAccessBeansPage" url="debug/beans.*"/>
+                <WebResource rights="ViewAccessThreadsPage,FullAccessThreadsPage" url="debug/threads.*"/>
+                <WebResource rights="ViewAccessAboutPage,FullAccessAboutPage" url="debug/about.*"/>
+                <WebResource rights="ViewAccessMemoryPage,FullAccessMemoryPage" url="debug/memory.*"/>
+                <WebResource rights="ViewAccessMetersPage,FullAccessMetersPage" url="debug/meters.*"/>
+                <WebResource rights="ViewAccessLoggingPage,FullAccessLoggingPage" url="debug/logging.*"/>
+                <WebResource rights="ViewAccessDatabasePage,FullAccessDatabasePage" url="debug/database.*"/>
+                <WebResource rights="ViewAccessDebugPage,FullAccessDebugPage" url="debug/debug.*"/>
+                <WebResource rights="ViewAccessCachesPage,FullAccessDebugPage" url="debug/caches.*"/>
+                <WebResource rights="ViewAccessCountPage,FullAccessDebugPage" url="debug/count.*"/>
+                <WebResource rights="ViewAccessDebugPage,FullAccessDebugPage" url="debug/connections.*"/>
+                <WebResource rights="ViewAccessMetersGridPage,FullAccessDebugPage" url="debug/metersGrid.*"/>
+                <WebResource rights="ViewAccessActiveMQPage,FullAccessDebugPage" url="debug/activemq.*"/>
+                <WebResource rights="AccessHistoryFullAccessConfiguration" url="systemSetup/accessHistoryConfig.*"/>
+                <WebResource rights="FullAccessDataExtractConfiguration" url="systemSetup/dataExtractConfig.*"/>
+                <WebResource rights="FullAccessMessageBusConfiguration" url="systemSetup/messageBusConfig.*"/>
+                <WebResource rights="AccessHistoryViewIdentityHistory" url="accessHistory/accessHistory.*" />
+              </List>
+            </value>
+          </entry>
+        </Map>
+      </Attributes>
+    </Configuration>
+  </ImportAction>
+
+  <ImportAction name="merge">
+    <Configuration name="SystemConfiguration">
+      <Attributes>
+        <Map>
+          <!--
+            List of Application Types that support Native Identity Change
+           -->
+          <entry key="nativeIdentityChangeApplicationTypes">
+            <value>
+              <List>
+                <String>Active Directory - Direct</String>
+              </List>
+            </value>
+          </entry>
+
+          <entry key="insignificantProperties" >
+            <value>
+              <Map>
+                <entry key="*" >
+                  <value>
+                    <Set>
+                      <String>lock</String>
+                    </Set>
+                  </value>
+                </entry>
+                <entry key="sailpoint.object.Identity" >
+                  <value>
+                    <Set>
+                      <String>lastRefresh</String>
+                      <String>lastLogin</String>
+                    </Set>
+                  </value>
+                </entry>
+                <entry key="sailpoint.object.IdentityEntitlement" >
+                  <value>
+                    <Set>
+                      <String>pendingCertificationItem</String>
+                      <String>certificationItem</String>
+                    </Set>
+                  </value>
+                </entry>
+                <entry key="sailpoint.object.Link" >
+                  <value>
+                    <Set>
+                      <String>lastRefresh</String>
+                    </Set>
+                  </value>
+                </entry>
+                <entry key="sailpoint.object.ManagedAttribute" >
+                  <value>
+                    <Set>
+                      <String>lastRefresh</String>
+                    </Set>
+                  </value>
+                </entry>
+              </Map>
+            </value>
+          </entry>
+          <!-- Encrypted CLass Field Mapping for Data Extract *Note: Subtypes are lowercase -->
+          <entry key="encryptedClassFieldConfig">
+            <value>
+              <Map>
+                <entry key="sailpoint.object.Identity">
+                  <value>
+                    <Map>
+                      <entry key="AXmlAttributes">
+                        <value>
+                          <Map>
+                            <entry key="extractable" value="false"/>
+                            <entry key="decryptable" value="false"/>
+                          </Map>
+                        </value>
+                      </entry>
+                      <entry key="password">
+                        <value>
+                          <Map>
+                            <entry key="extractable" value="false"/>
+                            <entry key="decryptable" value="false"/>
+                          </Map>
+                        </value>
+                      </entry>
+                      <entry key="xmlAuthenticationAnswers">
+                        <value>
+                          <Map>
+                            <entry key="extractable" value="false"/>
+                            <entry key="decryptable" value="false"/>
+                          </Map>
+                        </value>
+                      </entry>
+                      <entry key="passwordHistory">
+                        <value>
+                          <Map>
+                            <entry key="extractable" value="false"/>
+                            <entry key="decryptable" value="false"/>
+                          </Map>
+                        </value>
+                      </entry>
+                    </Map>
+                  </value>
+                </entry>
+                <entry key="workgroup">
+                  <value>
+                    <Map>
+                      <entry key="password">
+                        <value>
+                          <Map>
+                            <entry key="extractable" value="false"/>
+                            <entry key="decryptable" value="false"/>
+                          </Map>
+                        </value>
+                      </entry>
+                      <entry key="xmlAuthenticationAnswers">
+                        <value>
+                          <Map>
+                            <entry key="extractable" value="false"/>
+                            <entry key="decryptable" value="false"/>
+                          </Map>
+                        </value>
+                      </entry>
+                      <entry key="passwordHistory">
+                        <value>
+                          <Map>
+                            <entry key="extractable" value="false"/>
+                            <entry key="decryptable" value="false"/>
+                          </Map>
+                        </value>
+                      </entry>
+                      <entry key="AXmlAttributes">
+                        <value>
+                          <Map>
+                            <entry key="extractable" value="false"/>
+                            <entry key="decryptable" value="false"/>
+                          </Map>
+                        </value>
+                      </entry>
+                    </Map>
+                  </value>
+                </entry>
+                <entry key="sailpoint.object.Link">
+                  <value>
+                    <Map>
+                      <entry key="passwordHistory">
+                        <value>
+                          <Map>
+                            <entry key="extractable" value="false"/>
+                            <entry key="decryptable" value="false"/>
+                          </Map>
+                        </value>
+                      </entry>
+                    </Map>
+                  </value>
+                </entry>
+                <entry key="sailpoint.object.Application">
+                  <value>
+                    <Map>
+                      <entry key="secretFields">
+                        <value>
+                          <Map>
+                            <entry key="extractable" value="false"/>
+                            <entry key="decryptable" value="false"/>
+                          </Map>
+                        </value>
+                      </entry>
+                      <entry key="encryptedFields">
+                        <value>
+                          <Map>
+                            <entry key="extractable" value="false"/>
+                            <entry key="decryptable" value="false"/>
+                          </Map>
+                        </value>
+                      </entry>
+                    </Map>
+                  </value>
+                </entry>
+                <entry key="sailpoint.object.TargetSource">
+                  <value>
+                    <Map>
+                      <entry key="configuration">
+                        <value>
+                          <Map>
+                            <entry key="extractable" value="false"/>
+                            <entry key="decryptable" value="false"/>
+                          </Map>
+                        </value>
+                      </entry>
+                    </Map>
+                  </value>
+                </entry>
+              </Map>
+            </value>
+          </entry>
+        </Map>
+      </Attributes>
+    </Configuration>
+  </ImportAction>
+
+  <!--
+    Install and disable Access History
+  -->
+  <ImportAction name="include" value="WEB-INF/config/accesshistory/accesshistory.xml" />
+  <ImportAction name="include" value="WEB-INF/config/accesshistory/disable-accesshistory.xml" />
+</sailpoint>

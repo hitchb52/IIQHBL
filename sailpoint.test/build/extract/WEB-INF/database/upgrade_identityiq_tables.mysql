@@ -1,0 +1,1191 @@
+--
+-- This script contains DDL statements to upgrade a database schema to
+-- reflect changes to the model.  This file should only be used to
+-- upgrade from the last formal release version to the current code base.
+--
+-- The CONTEXT-SWITCH token is used to notify the upgrader of a change in database context. The token is from
+-- the iiq.properties file which represents the database url.
+--
+
+USE identityiq;
+
+-- DO NOT REMOVE OR MODIFY BLOCK
+-- CONTEXT-SWITCH: dataSource
+-- DO NOT REMOVE OR MODIFY BLOCK
+
+--
+-- add new significant_modified column
+--
+
+alter table identityiq.spt_account_group add significant_modified bigint;
+alter table identityiq.spt_activity_constraint add significant_modified bigint;
+alter table identityiq.spt_activity_data_source add significant_modified bigint;
+alter table identityiq.spt_alert add significant_modified bigint;
+alter table identityiq.spt_alert_action add significant_modified bigint;
+alter table identityiq.spt_alert_definition add significant_modified bigint;
+alter table identityiq.spt_application add significant_modified bigint;
+alter table identityiq.spt_application_schema add significant_modified bigint;
+alter table identityiq.spt_application_scorecard add significant_modified bigint;
+alter table identityiq.spt_attachment add significant_modified bigint;
+alter table identityiq.spt_audit_config add significant_modified bigint;
+alter table identityiq.spt_audit_event add significant_modified bigint;
+alter table identityiq.spt_authentication_answer add significant_modified bigint;
+alter table identityiq.spt_authentication_question add significant_modified bigint;
+alter table identityiq.spt_batch_request add significant_modified bigint;
+alter table identityiq.spt_batch_request_item add significant_modified bigint;
+alter table identityiq.spt_bulk_id_join add significant_modified bigint;
+alter table identityiq.spt_bundle add significant_modified bigint;
+alter table identityiq.spt_bundle_archive add significant_modified bigint;
+alter table identityiq.spt_bundle_profile_relation add significant_modified bigint;
+alter table identityiq.spt_bundle_profile_relation_object add significant_modified bigint;
+alter table identityiq.spt_bundle_profile_relation_step add significant_modified bigint;
+alter table identityiq.spt_capability add significant_modified bigint;
+alter table identityiq.spt_category add significant_modified bigint;
+alter table identityiq.spt_certification add significant_modified bigint;
+alter table identityiq.spt_certification_action add significant_modified bigint;
+alter table identityiq.spt_certification_archive add significant_modified bigint;
+alter table identityiq.spt_certification_challenge add significant_modified bigint;
+alter table identityiq.spt_certification_definition add significant_modified bigint;
+alter table identityiq.spt_certification_delegation add significant_modified bigint;
+alter table identityiq.spt_certification_entity add significant_modified bigint;
+alter table identityiq.spt_certification_group add significant_modified bigint;
+alter table identityiq.spt_certification_item add significant_modified bigint;
+alter table identityiq.spt_classification add significant_modified bigint;
+alter table identityiq.spt_cloud_access3way add significant_modified bigint;
+alter table identityiq.spt_cloud_access_group add significant_modified bigint;
+alter table identityiq.spt_cloud_access_role add significant_modified bigint;
+alter table identityiq.spt_cloud_access_scope add significant_modified bigint;
+alter table identityiq.spt_configuration add significant_modified bigint;
+alter table identityiq.spt_correlation_config add significant_modified bigint;
+alter table identityiq.spt_custom add significant_modified bigint;
+alter table identityiq.spt_deleted_object add significant_modified bigint;
+alter table identityiq.spt_dictionary add significant_modified bigint;
+alter table identityiq.spt_dictionary_term add significant_modified bigint;
+alter table identityiq.spt_dynamic_scope add significant_modified bigint;
+alter table identityiq.spt_email_template add significant_modified bigint;
+alter table identityiq.spt_entitlement_group add significant_modified bigint;
+alter table identityiq.spt_file_bucket add significant_modified bigint;
+alter table identityiq.spt_form add significant_modified bigint;
+alter table identityiq.spt_full_text_index add significant_modified bigint;
+alter table identityiq.spt_generic_constraint add significant_modified bigint;
+alter table identityiq.spt_group_definition add significant_modified bigint;
+alter table identityiq.spt_group_factory add significant_modified bigint;
+alter table identityiq.spt_group_index add significant_modified bigint;
+alter table identityiq.spt_identity add significant_modified bigint;
+alter table identityiq.spt_identity_archive add significant_modified bigint;
+alter table identityiq.spt_identity_entitlement add significant_modified bigint;
+alter table identityiq.spt_identity_history_item add significant_modified bigint;
+alter table identityiq.spt_identity_request add significant_modified bigint;
+alter table identityiq.spt_identity_request_item add significant_modified bigint;
+alter table identityiq.spt_identity_snapshot add significant_modified bigint;
+alter table identityiq.spt_identity_trigger add significant_modified bigint;
+alter table identityiq.spt_integration_config add significant_modified bigint;
+alter table identityiq.spt_jasper_page_bucket add significant_modified bigint;
+alter table identityiq.spt_jasper_result add significant_modified bigint;
+alter table identityiq.spt_jasper_template add significant_modified bigint;
+alter table identityiq.spt_link add significant_modified bigint;
+alter table identityiq.spt_localized_attribute add significant_modified bigint;
+alter table identityiq.spt_managed_attribute add significant_modified bigint;
+alter table identityiq.spt_message_template add significant_modified bigint;
+alter table identityiq.spt_mining_config add significant_modified bigint;
+alter table identityiq.spt_mitigation_expiration add significant_modified bigint;
+alter table identityiq.spt_module add significant_modified bigint;
+alter table identityiq.spt_monitoring_statistic add significant_modified bigint;
+alter table identityiq.spt_native_identity_change_event add significant_modified bigint;
+alter table identityiq.spt_object_classification add significant_modified bigint;
+alter table identityiq.spt_object_config add significant_modified bigint;
+alter table identityiq.spt_partition_result add significant_modified bigint;
+alter table identityiq.spt_password_policy add significant_modified bigint;
+alter table identityiq.spt_password_policy_holder add significant_modified bigint;
+alter table identityiq.spt_persisted_file add significant_modified bigint;
+alter table identityiq.spt_plugin add significant_modified bigint;
+alter table identityiq.spt_policy add significant_modified bigint;
+alter table identityiq.spt_policy_violation add significant_modified bigint;
+alter table identityiq.spt_post_commit_notification_object add significant_modified bigint;
+alter table identityiq.spt_process_log add significant_modified bigint;
+alter table identityiq.spt_profile add significant_modified bigint;
+alter table identityiq.spt_provisioning_request add significant_modified bigint;
+alter table identityiq.spt_provisioning_transaction add significant_modified bigint;
+alter table identityiq.spt_quick_link add significant_modified bigint;
+alter table identityiq.spt_quick_link_options add significant_modified bigint;
+alter table identityiq.spt_recommender_definition add significant_modified bigint;
+alter table identityiq.spt_remediation_item add significant_modified bigint;
+alter table identityiq.spt_remote_login_token add significant_modified bigint;
+alter table identityiq.spt_request add significant_modified bigint;
+alter table identityiq.spt_request_definition add significant_modified bigint;
+alter table identityiq.spt_request_state add significant_modified bigint;
+alter table identityiq.spt_resource_event add significant_modified bigint;
+alter table identityiq.spt_right_config add significant_modified bigint;
+alter table identityiq.spt_role_index add significant_modified bigint;
+alter table identityiq.spt_role_metadata add significant_modified bigint;
+alter table identityiq.spt_role_mining_result add significant_modified bigint;
+alter table identityiq.spt_role_scorecard add significant_modified bigint;
+alter table identityiq.spt_rule add significant_modified bigint;
+alter table identityiq.spt_rule_registry add significant_modified bigint;
+alter table identityiq.spt_scope add significant_modified bigint;
+alter table identityiq.spt_scorecard add significant_modified bigint;
+alter table identityiq.spt_score_config add significant_modified bigint;
+alter table identityiq.spt_server add significant_modified bigint;
+alter table identityiq.spt_server_statistic add significant_modified bigint;
+alter table identityiq.spt_service_definition add significant_modified bigint;
+alter table identityiq.spt_service_lock add significant_modified bigint;
+alter table identityiq.spt_service_status add significant_modified bigint;
+alter table identityiq.spt_sign_off_history add significant_modified bigint;
+alter table identityiq.spt_sodconstraint add significant_modified bigint;
+alter table identityiq.spt_archived_cert_entity add significant_modified bigint;
+alter table identityiq.spt_archived_cert_item add significant_modified bigint;
+alter table identityiq.spt_pending_req_attach add significant_modified bigint;
+alter table identityiq.spt_right add significant_modified bigint;
+alter table identityiq.spt_tag add significant_modified bigint;
+alter table identityiq.spt_target add significant_modified bigint;
+alter table identityiq.spt_target_association add significant_modified bigint;
+alter table identityiq.spt_target_source add significant_modified bigint;
+alter table identityiq.spt_task_definition add significant_modified bigint;
+alter table identityiq.spt_task_event add significant_modified bigint;
+alter table identityiq.spt_task_result add significant_modified bigint;
+alter table identityiq.spt_time_period add significant_modified bigint;
+alter table identityiq.spt_uiconfig add significant_modified bigint;
+alter table identityiq.spt_uipreferences add significant_modified bigint;
+alter table identityiq.spt_widget add significant_modified bigint;
+alter table identityiq.spt_workflow add significant_modified bigint;
+alter table identityiq.spt_workflow_case add significant_modified bigint;
+alter table identityiq.spt_workflow_registry add significant_modified bigint;
+alter table identityiq.spt_workflow_target add significant_modified bigint;
+alter table identityiq.spt_workflow_test_suite add significant_modified bigint;
+alter table identityiq.spt_work_item add significant_modified bigint;
+alter table identityiq.spt_work_item_archive add significant_modified bigint;
+alter table identityiq.spt_work_item_config add significant_modified bigint;
+
+
+
+create table identityiq.spt_intercepted_delete (
+     id varchar(32) not null,
+     created bigint,
+     modified bigint,
+     significant_modified bigint,
+     object_id varchar(32) not null,
+     object_name varchar(128),
+     object_type varchar(128) not null,
+     object_created_date bigint,
+     object_deleted_date bigint not null,
+     extract_config_name varchar(255) not null,
+     transform_config_name varchar(255) not null,
+     extract_execution_time_ms bigint,
+     extracted_object_json longtext not null,
+     primary key (id)
+) engine=InnoDB;
+
+-- Add subtype column to post commit notification object
+alter table identityiq.spt_post_commit_notification_object add subtype varchar(256);
+
+-- Add sequential monitor id to task result
+alter table identityiq.spt_task_result add sequential_monitor_id varchar(32);
+
+-- Adding service type to service definition table.
+alter table identityiq.spt_service_definition add service_type varchar(255) default 'DEFAULT' not null;
+
+-- Adding YAMLConfig table
+create table identityiq.spt_yamlconfig (
+     id varchar(32) not null,
+     created bigint,
+     modified bigint,
+     significant_modified bigint,
+     owner varchar(32),
+     assigned_scope varchar(32),
+     assigned_scope_path varchar(450),
+     name varchar(128) not null,
+     description varchar(1024),
+     type varchar(255),
+     subtype varchar(255),
+     yaml_text longtext,
+     primary key (id)
+) engine=InnoDB;
+alter table identityiq.spt_yamlconfig
+     add constraint UK_7b0o2ht3eii6yl6hlmb901aar unique (name);
+alter table identityiq.spt_yamlconfig
+     add constraint FKsur3p44hpishjiel9igc33vjk
+     foreign key (owner)
+     references identityiq.spt_identity (id);
+alter table identityiq.spt_yamlconfig
+     add constraint FKfhet5kiyexa0fgx6jj820p6si
+     foreign key (assigned_scope)
+     references identityiq.spt_scope (id);
+
+create index SPT_IDX7DB8F9DDEAEFCE0E on identityiq.spt_yamlconfig (assigned_scope_path(255));
+
+create table identityiq.spt_named_timestamp (
+   id varchar(32) not null,
+    created bigint,
+    modified bigint,
+    significant_modified bigint,
+    name varchar(255) not null,
+    timestamp bigint,
+    iiqlock varchar(128),
+    attributes longtext,
+    primary key (id)
+) engine=InnoDB;
+
+alter table identityiq.spt_named_timestamp
+   add constraint UK_c5tewl8ylk44ns0wx9lik19ae unique (name);
+
+create index spt_intercept_del_extract_ci on identityiq.spt_intercepted_delete (extract_config_name);
+
+
+--
+-- ACCESS HISTORY upgrade begin
+--
+
+-- DO NOT REMOVE OR MODIFY BLOCK
+-- CONTEXT-SWITCH: dataSourceAccessHistory
+-- DO NOT REMOVE OR MODIFY BLOCK
+
+--
+-- make sure the identityiqah database and identityiqah user exist.
+--
+
+-- based on create_identity_ah_db.mysql script
+CREATE DATABASE IF NOT EXISTS identityiqah CHARACTER SET utf8mb4;
+CREATE USER IF NOT EXISTS 'identityiqah'@'%' IDENTIFIED WITH mysql_native_password BY 'identityiqah';
+GRANT ALL PRIVILEGES ON identityiqah.* TO 'identityiqah'@'%';
+CREATE USER IF NOT EXISTS 'identityiqah'@'localhost' IDENTIFIED WITH mysql_native_password BY 'identityiqah';
+GRANT ALL PRIVILEGES ON identityiqah.* TO 'identityiqah'@'localhost';
+
+USE identityiqah;
+
+--
+-- Add new access history-related tables
+--
+create table identityiqah.spt_hist_certification (
+     id varchar(32) not null,
+     created bigint,
+     modified bigint,
+     significant_modified bigint,
+     cert_id varchar(32) not null,
+     cert_type varchar(64),
+     cert_display_name varchar(128),
+     cert_name varchar(128),
+     finished bigint,
+     signed bigint,
+     json longtext,
+     primary key (id)
+) engine=innodb;
+
+    create table identityiqah.spt_hist_cert_remediation_capture (
+       id varchar(32) not null,
+        created bigint,
+        modified bigint,
+        significant_modified bigint,
+        patch_doc_parent varchar(32),
+        identity_id varchar(32) not null,
+        identity_name varchar(128) not null,
+        transform_type varchar(10) not null,
+        effective_date bigint not null,
+        extended_to_date bigint,
+        json longtext,
+        json_format varchar(255),
+        smart_hash varchar(40),
+        full_hash varchar(40),
+        attributes longtext,
+        certification_item_id varchar(32),
+        certification_item_type varchar(255),
+        certification_item_sub_type varchar(255),
+        exception_application varchar(128),
+        exception_attribute_name varchar(255),
+        exception_attribute_value varchar(450),
+        exception_native_identity varchar(322),
+        bundle_id varchar(32),
+        bundle_name varchar(128),
+        bundle_assignment_id varchar(40),
+        primary key (id)
+    ) engine=InnoDB;
+
+create index spt_patch_doc_parent_cert on identityiqah.spt_hist_cert_remediation_capture (patch_doc_parent);
+create index spt_hist_cert_rem_eff_dt on identityiqah.spt_hist_cert_remediation_capture (effective_date);
+create index spt_hist_cert_rem_ext_dt on identityiqah.spt_hist_cert_remediation_capture (extended_to_date);
+create index spt_hcrc_certitemid on identityiqah.spt_hist_cert_remediation_capture (certification_item_id);
+create index spt_hcrc_certitemtype on identityiqah.spt_hist_cert_remediation_capture (certification_item_type);
+create index spt_hcrc_certitemsubtype on identityiqah.spt_hist_cert_remediation_capture (certification_item_sub_type);
+create index spt_hcrc_exc_app on identityiqah.spt_hist_cert_remediation_capture (exception_application);
+create index spt_hcrc_exc_attrname on identityiqah.spt_hist_cert_remediation_capture (exception_attribute_name);
+create index spt_hcrc_exc_attrval on identityiqah.spt_hist_cert_remediation_capture (exception_attribute_value);
+create index spt_hcrc_nativeIdentity_ci on identityiqah.spt_hist_cert_remediation_capture (exception_native_identity(255));
+create index spt_hcrc_bundleId on identityiqah.spt_hist_cert_remediation_capture (bundle_id);
+create index spt_hcrc_bundleName on identityiqah.spt_hist_cert_remediation_capture (bundle_name);
+create index spt_hcrc_bundleAssignId on identityiqah.spt_hist_cert_remediation_capture (bundle_assignment_id);
+
+    create table identityiqah.spt_hist_role_remediation_entitlements (
+       cert_remediation_capture varchar(32) not null,
+        idx integer not null,
+        application varchar(128),
+        application_id varchar(32),
+        entitlement_name varchar(255),
+        entitlement_value varchar(450),
+        native_identity varchar(322),
+        primary key (cert_remediation_capture, idx)
+    ) engine=InnoDB;
+
+create index spt_hrre_appname on identityiqah.spt_hist_role_remediation_entitlements (application);
+create index spt_hrre_appid on identityiqah.spt_hist_role_remediation_entitlements (application_id);
+create index spt_hrre_ent_name on identityiqah.spt_hist_role_remediation_entitlements (entitlement_name);
+create index spt_hrre_ent_value on identityiqah.spt_hist_role_remediation_entitlements (entitlement_value);
+create index spt_hrre_native_id on identityiqah.spt_hist_role_remediation_entitlements (native_identity(255));
+alter table identityiqah.spt_hist_role_remediation_entitlements
+       add constraint FKhvwj97ncucp9u2flf5llenlcs
+       foreign key (cert_remediation_capture)
+       references identityiqah.spt_hist_cert_remediation_capture (id);
+
+create table identityiqah.spt_hist_identity (
+  id varchar(32) not null,
+  created bigint,
+  modified bigint,
+  significant_modified bigint,
+  identity_id varchar(32) not null,
+  name varchar(128) not null,
+  display_name varchar(128),
+  deleted bit,
+  lastname varchar(128),
+  firstname varchar(128),
+  email varchar(128),
+  primary key (id)
+) engine=InnoDB;
+
+alter table identityiqah.spt_hist_identity
+  add constraint spt_hist_identity_name_id_uk unique (identity_id, name);
+
+create index spt_hist_identity_dsp_name_ci on identityiqah.spt_hist_identity (display_name);
+create index spt_hist_identity_deleted on identityiqah.spt_hist_identity (deleted);
+create index spt_hist_identity_lname_ci on identityiqah.spt_hist_identity (lastname);
+create index spt_hist_identity_fname_ci on identityiqah.spt_hist_identity (firstname);
+create index spt_hist_identity_email_ci on identityiqah.spt_hist_identity (email);
+
+create table identityiqah.spt_hist_identity_event (
+  id varchar(32) not null,
+  created bigint,
+  modified bigint,
+  significant_modified bigint,
+  entity_id varchar(32) not null,
+  entity_name varchar(128) not null,
+  event_date bigint,
+  prev_capture_id varchar(32),
+  capture_id varchar(32),
+  event_category varchar(255),
+  event_type varchar(255),
+  event_source_type varchar(255),
+  event_detail_json longtext,
+  property_name varchar(255),
+  account_id varchar(32),
+  old_value longtext,
+  new_value longtext,
+  request_item_id varchar(32),
+  identity_request_id varchar(32),
+  pending_request_item_id varchar(32),
+  identity_entitlement_id varchar(32),
+  acct_app_instance varchar(128),
+  acct_app_id varchar(32),
+  acct_native_id varchar(255),
+  acct_app_name varchar(255),
+  acct_display_name varchar(255),
+  qry_property1 varchar(255),
+  qry_property2 varchar(255),
+  qry_property3 varchar(255),
+  qry_property4 varchar(255),
+  qry_property5 varchar(255),
+  qry_property6 varchar(255),
+  qry_property7 varchar(255),
+  qry_property8 varchar(255),
+  qry_property9 varchar(255),
+  qry_property10 varchar(255),
+  primary key (id)
+) engine=InnoDB;
+
+create index spt_hist_ident_event_ent_id on identityiqah.spt_hist_identity_event (entity_id);
+create index spt_hist_ident_event_evt_dt on identityiqah.spt_hist_identity_event (event_date);
+create index spt_hist_ident_event_evt_cat on identityiqah.spt_hist_identity_event (event_category);
+create index spt_hist_ident_event_evt_typ on identityiqah.spt_hist_identity_event (event_type);
+create index spt_hist_ident_evt_prp_nm_ci on identityiqah.spt_hist_identity_event (property_name);
+create index spt_hev_reqitemid on identityiqah.spt_hist_identity_event (request_item_id);
+create index spt_hev_reqid on identityiqah.spt_hist_identity_event (identity_request_id);
+create index spt_hev_preqitemid on identityiqah.spt_hist_identity_event (pending_request_item_id);
+create index spt_hev_entid on identityiqah.spt_hist_identity_event (identity_entitlement_id);
+create index spt_hev_appinst_ci on identityiqah.spt_hist_identity_event (acct_app_instance);
+create index spt_hist_ident_evt_acct_appid on identityiqah.spt_hist_identity_event (acct_app_id);
+create index spt_hist_ident_evt_acct_natid on identityiqah.spt_hist_identity_event (acct_native_id);
+create index spt_hie_acct_appname_ci on identityiqah.spt_hist_identity_event (acct_app_name);
+create index spt_hie_acct_disp_ci on identityiqah.spt_hist_identity_event (acct_display_name);
+create index spt_hist_ident_evt_qry_prop1 on identityiqah.spt_hist_identity_event (qry_property1);
+create index spt_hist_ident_evt_qry_prop2 on identityiqah.spt_hist_identity_event (qry_property2);
+create index spt_hist_ident_evt_qry_prop3 on identityiqah.spt_hist_identity_event (qry_property3);
+create index spt_hist_ident_evt_qry_prop4 on identityiqah.spt_hist_identity_event (qry_property4);
+create index spt_hist_ident_evt_qry_prop5 on identityiqah.spt_hist_identity_event (qry_property5);
+create index spt_hist_ident_evt_qry_prop6 on identityiqah.spt_hist_identity_event (qry_property6);
+create index spt_hist_ident_evt_qry_prop7 on identityiqah.spt_hist_identity_event (qry_property7);
+create index spt_hist_ident_evt_qry_prop8 on identityiqah.spt_hist_identity_event (qry_property8);
+create index spt_hist_ident_evt_qry_prop9 on identityiqah.spt_hist_identity_event (qry_property9);
+create index spt_hist_ident_evt_qry_prop10 on identityiqah.spt_hist_identity_event (qry_property10);
+
+
+create table identityiqah.spt_hist_identity_capture (
+  id varchar(32) not null,
+  created bigint,
+  modified bigint,
+  significant_modified bigint,
+  patch_doc_parent varchar(32),
+  identity_id varchar(32) not null,
+  identity_name varchar(128) not null,
+  transform_type varchar(10) not null,
+  effective_date bigint not null,
+  latest bit,
+  extended_to_date bigint,
+  json longtext,
+  json_format varchar(255),
+  smart_hash varchar(40),
+  full_hash varchar(40),
+  attributes longtext,
+  manager_id varchar(32),
+  display_name varchar(128),
+  firstname varchar(128),
+  lastname varchar(128),
+  email varchar(128),
+  manager_status bit,
+  inactive bit,
+  type varchar(128),
+  primary key (id)
+) engine=InnoDB;
+
+create index spt_patch_doc_parent_identity on identityiqah.spt_hist_identity_capture (patch_doc_parent);
+create index spt_hist_ident_cap_dpy_nm_ide_id on identityiqah.spt_hist_identity_capture (identity_id, display_name);
+create index spt_hist_ident_cap_eff_dt on identityiqah.spt_hist_identity_capture (effective_date);
+create index spt_hist_ident_cap_latest on identityiqah.spt_hist_identity_capture (latest);
+create index spt_hist_ident_cap_ext_dt on identityiqah.spt_hist_identity_capture (extended_to_date);
+create index spt_hist_ident_cap_manager on identityiqah.spt_hist_identity_capture (manager_id);
+create index spt_hist_ident_cap_fname_ci on identityiqah.spt_hist_identity_capture (firstname);
+create index spt_hist_ident_cap_lname_ci on identityiqah.spt_hist_identity_capture (lastname);
+create index spt_hist_ident_cap_email_ci on identityiqah.spt_hist_identity_capture (email);
+create index spt_hist_ident_cap_mgr_status on identityiqah.spt_hist_identity_capture (manager_status);
+create index spt_hist_ident_cap_inactive on identityiqah.spt_hist_identity_capture (inactive);
+create index spt_hist_ident_cap_type_ci on identityiqah.spt_hist_identity_capture (type);
+
+create table identityiqah.spt_hist_role_event (
+  id varchar(32) not null,
+  created bigint,
+  modified bigint,
+  significant_modified bigint,
+  entity_id varchar(32) not null,
+  entity_name varchar(128) not null,
+  event_date bigint,
+  prev_capture_id varchar(32),
+  capture_id varchar(32),
+  event_category varchar(255),
+  event_type varchar(255),
+  event_source_type varchar(255),
+  event_detail_json longtext,
+  property_name varchar(255),
+  old_value longtext,
+  new_value longtext,
+  qry_property1 varchar(255),
+  qry_property2 varchar(255),
+  qry_property3 varchar(255),
+  qry_property4 varchar(255),
+  qry_property5 varchar(255),
+  qry_property6 varchar(255),
+  qry_property7 varchar(255),
+  qry_property8 varchar(255),
+  qry_property9 varchar(255),
+  qry_property10 varchar(255),
+  primary key (id)
+) engine=InnoDB;
+
+create index spt_hist_role_event_evt_dt on identityiqah.spt_hist_role_event (event_date);
+create index spt_hist_role_event_evt_cat on identityiqah.spt_hist_role_event (event_category);
+create index spt_hist_role_event_evt_type on identityiqah.spt_hist_role_event (event_type);
+create index spt_hist_role_event_prp_nm_ci on identityiqah.spt_hist_role_event (property_name);
+create index spt_hist_role_event_qry_prop1 on identityiqah.spt_hist_role_event (qry_property1);
+create index spt_hist_role_event_qry_prop2 on identityiqah.spt_hist_role_event (qry_property2);
+create index spt_hist_role_event_qry_prop3 on identityiqah.spt_hist_role_event (qry_property3);
+create index spt_hist_role_event_qry_prop4 on identityiqah.spt_hist_role_event (qry_property4);
+create index spt_hist_role_event_qry_prop5 on identityiqah.spt_hist_role_event (qry_property5);
+create index spt_hist_role_event_qry_prop6 on identityiqah.spt_hist_role_event (qry_property6);
+create index spt_hist_role_event_qry_prop7 on identityiqah.spt_hist_role_event (qry_property7);
+create index spt_hist_role_event_qry_prop8 on identityiqah.spt_hist_role_event (qry_property8);
+create index spt_hist_role_event_qry_prop9 on identityiqah.spt_hist_role_event (qry_property9);
+create index spt_hist_role_evt_qry_prop10 on identityiqah.spt_hist_role_event (qry_property10);
+
+alter table identityiqah.spt_hist_certification
+     add constraint uk_kesw6k26csy7qxitgtloos7y2 unique (cert_id);
+
+create table identityiqah.spt_hist_role (
+  id varchar(32) not null,
+  created bigint,
+  modified bigint,
+  significant_modified bigint,
+  role_id varchar(32) not null,
+  name varchar(128) not null,
+  display_name varchar(128),
+  deleted bit,
+  primary key (id)
+) engine=innodb;
+
+create table identityiqah.spt_hist_role_capture (
+  id varchar(32) not null,
+  created bigint,
+  modified bigint,
+  significant_modified bigint,
+  patch_doc_parent varchar(32),
+  role_id varchar(32) not null,
+  role_name varchar(128) not null,
+  transform_type varchar(10) not null,
+  effective_date bigint not null,
+  extended_to_date bigint,
+  json longtext,
+  json_format varchar(255),
+  smart_hash varchar(40),
+  full_hash varchar(40),
+  attributes longtext,
+  type varchar(128),
+  owner_id varchar(32),
+  primary key (id)
+) engine=InnoDB;
+
+create index spt_patch_doc_parent_role on identityiqah.spt_hist_role_capture (patch_doc_parent);
+create index spt_hist_role_cap_eff_dt on identityiqah.spt_hist_role_capture (effective_date);
+create index spt_hist_role_cap_ext_dt on identityiqah.spt_hist_role_capture (extended_to_date);
+create index spt_hrc_type_ci on identityiqah.spt_hist_role_capture (type);
+create index spt_hrc_ownerid on identityiqah.spt_hist_role_capture (owner_id);
+
+create index spt_hist_role_displayname_ci on identityiqah.spt_hist_role (display_name);
+create index spt_hist_role_deleted on identityiqah.spt_hist_role (deleted);
+alter table identityiqah.spt_hist_role
+  add constraint uk_kem9ulqu2gybfqdtq226k3htc unique (role_id);
+
+create table identityiqah.spt_hist_mattr (
+  id varchar(32) not null,
+  created bigint,
+  modified bigint,
+  significant_modified bigint,
+  mattr_id varchar(32) not null,
+  mattr_hash varchar(128) not null,
+  display_name varchar(128),
+  deleted bit,
+  primary key (id)
+) engine=InnoDB;
+
+alter table identityiqah.spt_hist_mattr
+ add constraint UK_sgmfjmeagljgj36cgi3o0cltw unique (mattr_id);
+
+create index spt_hist_mattr_displayName_ci on identityiqah.spt_hist_mattr (display_name);
+create index spt_hist_mattr_deleted on identityiqah.spt_hist_mattr (deleted);
+
+create table identityiqah.spt_hist_mattr_capture (
+  id varchar(32) not null,
+  created bigint,
+  modified bigint,
+  significant_modified bigint,
+  patch_doc_parent varchar(32),
+  transform_type varchar(10) not null,
+  effective_date bigint not null,
+  extended_to_date bigint,
+  json longtext,
+  json_format varchar(255),
+  smart_hash varchar(40),
+  full_hash varchar(40),
+  attributes longtext,
+  mattr_id varchar(32) not null,
+  mattr_hash varchar(128) not null,
+  display_name varchar(128),
+  application_name varchar(128),
+  application_id varchar(32),
+  type varchar(128),
+  attribute_name varchar(255),
+  attribute_value varchar(450),
+  primary key (id)
+) engine=InnoDB;
+
+create index spt_patch_doc_parent_mattr on identityiqah.spt_hist_mattr_capture (patch_doc_parent);
+create index spt_hist_mattr_cap_eff_dt on identityiqah.spt_hist_mattr_capture (effective_date);
+create index spt_hist_mattr_cap_ext_dt on identityiqah.spt_hist_mattr_capture (extended_to_date);
+create index spt_hist_matt_cap_matt_id on identityiqah.spt_hist_mattr_capture (mattr_id);
+create index spt_hist_matt_cap_matt_hsh_ci on identityiqah.spt_hist_mattr_capture (mattr_hash);
+create index spt_hist_mattr_cap_dsp_nm_ci on identityiqah.spt_hist_mattr_capture (display_name);
+create index spt_mac_appname_ci on identityiqah.spt_hist_mattr_capture (application_name);
+create index spt_mac_appid on identityiqah.spt_hist_mattr_capture (application_id);
+create index spt_mac_type_ci on identityiqah.spt_hist_mattr_capture (type);
+create index spt_mac_attr_ci on identityiqah.spt_hist_mattr_capture (attribute_name);
+create index spt_mac_value_ci on identityiqah.spt_hist_mattr_capture (attribute_value(255));
+
+create table identityiqah.spt_hist_mattr_event (
+  id varchar(32) not null,
+  created bigint,
+  modified bigint,
+  significant_modified bigint,
+  entity_id varchar(32) not null,
+  display_name varchar(128),
+  event_date bigint,
+  prev_capture_id varchar(32),
+  capture_id varchar(32),
+  event_category varchar(255),
+  event_type varchar(255),
+  event_source_type varchar(255),
+  event_detail_json longtext,
+  property_name varchar(255),
+  old_value longtext,
+  new_value longtext,
+  acct_app_id varchar(32),
+  acct_native_id varchar(255),
+  acct_app_name varchar(255),
+  acct_display_name varchar(255),
+  qry_property1 varchar(255),
+  qry_property2 varchar(255),
+  qry_property3 varchar(255),
+  qry_property4 varchar(255),
+  qry_property5 varchar(255),
+  qry_property6 varchar(255),
+  qry_property7 varchar(255),
+  qry_property8 varchar(255),
+  qry_property9 varchar(255),
+  qry_property10 varchar(255),
+  primary key (id)
+) engine=InnoDB;
+
+create index spt_hist_mattr_evt_dsp_nm_ci on identityiqah.spt_hist_mattr_event (display_name);
+create index spt_hist_mattr_event_evt_dt on identityiqah.spt_hist_mattr_event (event_date);
+create index spt_hist_mattr_event_evt_cat on identityiqah.spt_hist_mattr_event (event_category);
+create index spt_hist_mattr_event_evt_type on identityiqah.spt_hist_mattr_event (event_type);
+create index spt_hist_mattr_evt_prp_nm_ci on identityiqah.spt_hist_mattr_event (property_name);
+create index spt_hist_mattr_evt_acct_appid on identityiqah.spt_hist_mattr_event (acct_app_id);
+create index spt_hist_mattr_evt_nativeid on identityiqah.spt_hist_mattr_event (acct_native_id);
+create index spt_hmae_acct_appname_ci on identityiqah.spt_hist_mattr_event (acct_app_name);
+create index spt_hmae_acct_disp_ci on identityiqah.spt_hist_mattr_event (acct_display_name);
+create index spt_hist_mattr_evt_qry_prop1 on identityiqah.spt_hist_mattr_event (qry_property1);
+create index spt_hist_mattr_evt_qry_prop2 on identityiqah.spt_hist_mattr_event (qry_property2);
+create index spt_hist_mattr_evt_qry_prop3 on identityiqah.spt_hist_mattr_event (qry_property3);
+create index spt_hist_mattr_evt_qry_prop4 on identityiqah.spt_hist_mattr_event (qry_property4);
+create index spt_hist_mattr_evt_qry_prop5 on identityiqah.spt_hist_mattr_event (qry_property5);
+create index spt_hist_mattr_evt_qry_prop6 on identityiqah.spt_hist_mattr_event (qry_property6);
+create index spt_hist_mattr_evt_qry_prop7 on identityiqah.spt_hist_mattr_event (qry_property7);
+create index spt_hist_mattr_evt_qry_prop8 on identityiqah.spt_hist_mattr_event (qry_property8);
+create index spt_hist_mattr_evt_qry_prop9 on identityiqah.spt_hist_mattr_event (qry_property9);
+create index spt_hist_mattr_evt_qry_prop10 on identityiqah.spt_hist_mattr_event (qry_property10);
+
+
+create table identityiqah.spt_hist_capability (
+  id varchar(32) not null,
+  created bigint,
+  modified bigint,
+  significant_modified bigint,
+  name varchar(128) not null,
+  description varchar(1024),
+  capability_id varchar(32) not null,
+  display_name varchar(128),
+  deleted bit,
+  primary key (id)
+) engine=InnoDB;
+
+alter table identityiqah.spt_hist_capability
+  add constraint UK_q19cl120ixe3opavvwxoi0ahu unique (capability_id);
+
+create index spt_hist_cap_displayName_ci on identityiqah.spt_hist_capability (display_name);
+create index spt_hist_capability_deleted on identityiqah.spt_hist_capability (deleted);
+
+create table identityiqah.spt_hist_capability_capture (
+  id varchar(32) not null,
+  created bigint,
+  modified bigint,
+  significant_modified bigint,
+  patch_doc_parent varchar(32),
+  capability_id varchar(32) not null,
+  capability_name varchar(128) not null,
+  transform_type varchar(10) not null,
+  effective_date bigint not null,
+  extended_to_date bigint,
+  json longtext,
+  json_format varchar(255),
+  smart_hash varchar(40),
+  full_hash varchar(40),
+  attributes longtext,
+  primary key (id)
+) engine=InnoDB;
+
+create index spt_patch_doc_parent_cap on identityiqah.spt_hist_capability_capture (patch_doc_parent);
+create index spt_hist_cap_capture_eff_dt on identityiqah.spt_hist_capability_capture (effective_date);
+create index spt_hist_cap_capture_ext_dt on identityiqah.spt_hist_capability_capture (extended_to_date);
+
+create table identityiqah.spt_hist_assigned_roles (
+       capture_id varchar(32) not null,
+        idx integer not null,
+        role_id varchar(255),
+        primary key (capture_id, idx)
+) engine=InnoDB;
+
+alter table identityiqah.spt_hist_assigned_roles
+   add constraint FK57arq9l8c10fbrtbixsryavgg
+   foreign key (capture_id)
+   references identityiqah.spt_hist_identity_capture (id);
+
+create table identityiqah.spt_hist_detected_roles (
+       capture_id varchar(32) not null,
+        idx integer not null,
+        role_id varchar(255),
+        primary key (capture_id, idx)
+) engine=InnoDB;
+
+alter table identityiqah.spt_hist_detected_roles
+   add constraint FKsvem4m5n0f7dqasy8pht1m0dj
+   foreign key (capture_id)
+   references identityiqah.spt_hist_identity_capture (id);
+
+create table identityiqah.spt_hist_entitlement_capture (
+   id varchar(32) not null,
+   created bigint,
+   modified bigint,
+   significant_modified bigint,
+   patch_doc_parent varchar(32),
+   identity_id varchar(32) not null,
+   identity_name varchar(128) not null,
+   transform_type varchar(10) not null,
+   effective_date bigint not null,
+   extended_to_date bigint,
+   json longtext,
+   json_format varchar(255),
+   smart_hash varchar(40),
+   full_hash varchar(40),
+   attributes longtext,
+   identity_entitlement_id varchar(32),
+   application_id varchar(32),
+   application_name varchar(128),
+   native_identity varchar(450),
+   instance varchar(128),
+   display_value varchar(450),
+   type varchar(128),
+   attribute_name varchar(255),
+   attribute_value varchar(450),
+   granted_by_role bit,
+   role_id varchar(32),
+   request_item_id varchar(32),
+   pending_request_item_id varchar(32),
+   certification_item_id varchar(32),
+   deleted bit,
+   primary key (id)
+) engine=InnoDB;
+
+create index spt_patch_doc_parent_entl on identityiqah.spt_hist_entitlement_capture (patch_doc_parent);
+create index spt_hist_identity_cap_eff_dt on identityiqah.spt_hist_entitlement_capture (effective_date);
+create index spt_hist_identity_cap_ext_dt on identityiqah.spt_hist_entitlement_capture (extended_to_date);
+create index spt_hec_ie_id on identityiqah.spt_hist_entitlement_capture (identity_entitlement_id);
+create index spt_hec_appid on identityiqah.spt_hist_entitlement_capture (application_id);
+create index spt_hec_app_role_type on identityiqah.spt_hist_entitlement_capture (application_name, type, attribute_name);
+create index spt_hec_appName_ci on identityiqah.spt_hist_entitlement_capture (application_name);
+create index spt_hec_nativeid_ci on identityiqah.spt_hist_entitlement_capture (native_identity(255));
+create index spt_hec_instance_ci on identityiqah.spt_hist_entitlement_capture (instance);
+create index spt_hec_dispValue_ci on identityiqah.spt_hist_entitlement_capture (display_value);
+create index spt_hec_type_ci on identityiqah.spt_hist_entitlement_capture (type);
+create index spt_hec_attrname_ci on identityiqah.spt_hist_entitlement_capture (attribute_name);
+create index spt_hec_attrvalue_ci on identityiqah.spt_hist_entitlement_capture (attribute_value);
+create index spt_hist_hec_by_role on identityiqah.spt_hist_entitlement_capture (granted_by_role);
+create index spt_hec_roleid on identityiqah.spt_hist_entitlement_capture (role_id);
+create index spt_hec_reqitemid on identityiqah.spt_hist_entitlement_capture (request_item_id);
+create index spt_hec_preqitemid on identityiqah.spt_hist_entitlement_capture (pending_request_item_id);
+create index spt_hec_certitemid on identityiqah.spt_hist_entitlement_capture (certification_item_id);
+create index spt_hec_deleted on identityiqah.spt_hist_entitlement_capture (deleted);
+
+create table identityiqah.spt_hist_entitlements (
+   capture_id varchar(32) not null,
+   idx integer not null,
+   identity_entitlement_id varchar(255),
+   primary key (capture_id, idx)
+) engine=InnoDB;
+
+alter table identityiqah.spt_hist_entitlements
+   add constraint FKslsba39xq240608yr2vc59rn3
+   foreign key (capture_id)
+   references identityiqah.spt_hist_identity_capture (id);
+
+create table identityiqah.spt_hist_policy_violations (
+     capture_id varchar(32) not null,
+     idx integer not null,
+     policy_violation_id varchar(255),
+     primary key (capture_id, idx)
+) engine=innodb;
+
+create table identityiqah.spt_hist_policy_violation_capture (
+     id varchar(32) not null,
+     created bigint,
+     modified bigint,
+     significant_modified bigint,
+     patch_doc_parent varchar(32),
+     identity_id varchar(32) not null,
+     identity_name varchar(128) not null,
+     transform_type varchar(10) not null,
+     effective_date bigint not null,
+     extended_to_date bigint,
+     json longtext,
+     json_format varchar(255),
+     smart_hash varchar(40),
+     full_hash varchar(40),
+     attributes longtext,
+     policy_violation_id varchar(32),
+     active bit,
+     policy_id varchar(255),
+     policy_name varchar(255),
+     constraint_id varchar(255),
+     constraint_name varchar(255),
+     status varchar(255),
+     deleted bit,
+     primary key (id)
+) engine=innodb;
+
+create index spt_patch_doc_parent_pv on identityiqah.spt_hist_policy_violation_capture (patch_doc_parent);
+create index spt_hist_pv_cap_eff_dt on identityiqah.spt_hist_policy_violation_capture (effective_date);
+create index spt_hist_pv_cap_ext_dt on identityiqah.spt_hist_policy_violation_capture (extended_to_date);
+create index spt_hist_pv_id on identityiqah.spt_hist_policy_violation_capture (policy_violation_id);
+create index spt_hist_pv_active on identityiqah.spt_hist_policy_violation_capture (active);
+create index spt_hist_pv_deleted on identityiqah.spt_hist_policy_violation_capture (deleted);
+
+alter table identityiqah.spt_hist_policy_violations
+     add constraint FK431cy516ss4k08rgrpq20x1wb
+     foreign key (capture_id)
+     references identityiqah.spt_hist_identity_capture (id);
+
+create table identityiqah.spt_hist_policy_violation_remediation_capture (
+    id varchar(32) not null,
+    created bigint,
+    modified bigint,
+    significant_modified bigint,
+    patch_doc_parent varchar(32),
+    identity_id varchar(32) not null,
+    identity_name varchar(128) not null,
+    transform_type varchar(10) not null,
+    effective_date bigint not null,
+    extended_to_date bigint,
+    json longtext,
+    json_format varchar(255),
+    smart_hash varchar(40),
+    full_hash varchar(40),
+    attributes longtext,
+    identity_history_item_id varchar(32),
+    certification_item_type varchar(255),
+    policy_name varchar(255),
+    constraint_name varchar(255),
+    deleted bit,
+    primary key (id)
+) engine=innodb;
+
+create index spt_patch_doc_parent_pvr on identityiqah.spt_hist_policy_violation_remediation_capture (patch_doc_parent);
+create index spt_hist_pvr_cap_eff_dt on identityiqah.spt_hist_policy_violation_remediation_capture (effective_date);
+create index spt_hist_pvr_cap_ext_dt on identityiqah.spt_hist_policy_violation_remediation_capture (extended_to_date);
+create index spt_pvr_cap_ihiid on identityiqah.spt_hist_policy_violation_remediation_capture (identity_history_item_id);
+create index spt_pvr_cap_certitemtype on identityiqah.spt_hist_policy_violation_remediation_capture (certification_item_type);
+
+create table identityiqah.spt_hist_policy_violation_remediation_bundle_ids (
+    capture_id varchar(32) not null,
+    idx integer not null,
+    bundle_id varchar(255),
+    primary key (capture_id, idx)
+) engine=innodb;
+
+alter table identityiqah.spt_hist_policy_violation_remediation_bundle_ids
+    add constraint FKitaxnoflkhnq6ijo5yqmh29jc
+    foreign key (capture_id)
+    references identityiqah.spt_hist_policy_violation_remediation_capture (id);
+
+create table identityiqah.spt_hist_policy_violation_remediation_entitlements (
+    policy_violation_remediation_ent varchar(32) not null,
+    idx integer not null,
+    application varchar(255),
+    application_id varchar(255),
+    entitlement_name varchar(255),
+    entitlement_value varchar(255),
+    entitlement_display_value varchar(255),
+    primary key (policy_violation_remediation_ent, idx)
+) engine=innodb;
+
+alter table identityiqah.spt_hist_policy_violation_remediation_entitlements
+    add constraint fkjie8pn4nfhcfi3t92br291fc1
+    foreign key (policy_violation_remediation_ent)
+    references identityiqah.spt_hist_policy_violation_remediation_capture (id);
+
+create table identityiqah.spt_hist_accounts (
+    capture_id varchar(32) not null,
+    idx integer not null,
+    account_id varchar(255),
+    primary key (capture_id, idx)
+) engine=innodb;
+
+create table identityiqah.spt_hist_account_capture (
+    id varchar(32) not null,
+    created bigint,
+    modified bigint,
+    significant_modified bigint,
+    patch_doc_parent varchar(32),
+    identity_id varchar(32) not null,
+    identity_name varchar(128) not null,
+    transform_type varchar(10) not null,
+    effective_date bigint not null,
+    extended_to_date bigint,
+    json longtext,
+    json_format varchar(255),
+    smart_hash varchar(40),
+    full_hash varchar(40),
+    attributes longtext,
+    account_id varchar(32),
+    application_name varchar(128),
+    displayable_name varchar(128),
+    deleted bit,
+    primary key (id)
+) engine=innodb;
+
+create index spt_patch_doc_parent_account on identityiqah.spt_hist_account_capture (patch_doc_parent);
+create index spt_hac_account_cap_eff_dt on identityiqah.spt_hist_account_capture (effective_date);
+create index spt_hac_account_cap_ext_dt on identityiqah.spt_hist_account_capture (extended_to_date);
+create index spt_hac_account_id on identityiqah.spt_hist_account_capture (account_id);
+create index spt_hac_account_dn_ci on identityiqah.spt_hist_account_capture (displayable_name);
+create index spt_hac_account_deleted on identityiqah.spt_hist_account_capture (deleted);
+
+alter table identityiqah.spt_hist_accounts
+    add constraint fk605klb45cwnh86urs1aw07cue
+    foreign key (capture_id)
+    references identityiqah.spt_hist_identity_capture (id);
+
+create table identityiqah.spt_hist_workgroup (
+    id varchar(32) not null,
+    created bigint,
+    modified bigint,
+    significant_modified bigint,
+    workgroup_id varchar(32) not null,
+    name varchar(128) not null,
+    display_name varchar(128),
+    description varchar(1024),
+    deleted bit,
+    email varchar(128),
+    primary key (id)
+) engine=innodb;
+
+create table identityiqah.spt_hist_workgroup_capture (
+    id varchar(32) not null,
+    created bigint,
+    modified bigint,
+    significant_modified bigint,
+    patch_doc_parent varchar(32),
+    workgroup_id varchar(32) not null,
+    workgroup_name varchar(128) not null,
+    transform_type varchar(10) not null,
+    effective_date bigint not null,
+    extended_to_date bigint,
+    json longtext,
+    json_format varchar(255),
+    smart_hash varchar(40),
+    full_hash varchar(40),
+    attributes longtext,
+    display_name varchar(128),
+    email varchar(128),
+    inactive bit,
+    primary key (id)
+) engine=innodb;
+
+create table identityiqah.spt_hist_workgroup_event (
+    id varchar(32) not null,
+    created bigint,
+    modified bigint,
+    significant_modified bigint,
+    entity_id varchar(32) not null,
+    entity_name varchar(128) not null,
+    event_date bigint,
+    prev_capture_id varchar(32),
+    capture_id varchar(32),
+    event_category varchar(255),
+    event_type varchar(255),
+    event_source_type varchar(255),
+    event_detail_json longtext,
+    property_name varchar(255),
+    old_value longtext,
+    new_value longtext,
+    qry_property1 varchar(255),
+    qry_property2 varchar(255),
+    qry_property3 varchar(255),
+    qry_property4 varchar(255),
+    qry_property5 varchar(255),
+    qry_property6 varchar(255),
+    qry_property7 varchar(255),
+    qry_property8 varchar(255),
+    qry_property9 varchar(255),
+    qry_property10 varchar(255),
+    primary key (id)
+) engine=innodb;
+
+create index spt_hist_wg_displayname_ci on identityiqah.spt_hist_workgroup (display_name);
+create index spt_hist_wg_deleted on identityiqah.spt_hist_workgroup (deleted);
+create index spt_hist_wg_email_ci on identityiqah.spt_hist_workgroup (email);
+
+alter table identityiqah.spt_hist_workgroup
+add constraint spt_hist_wg_name_id_uk unique (workgroup_id, name);
+
+create index spt_patch_doc_parent_workgroup on identityiqah.spt_hist_workgroup_capture (patch_doc_parent);
+create index spt_hist_workgroup_cap_eff_dt on identityiqah.spt_hist_workgroup_capture (effective_date);
+create index spt_hist_workgroup_cap_ext_dt on identityiqah.spt_hist_workgroup_capture (extended_to_date);
+create index spt_hwc_displayname_ci on identityiqah.spt_hist_workgroup_capture (display_name);
+create index spt_hwc_email_ci on identityiqah.spt_hist_workgroup_capture (email);
+create index spt_hwc_inactive on identityiqah.spt_hist_workgroup_capture (inactive);
+create index spt_hist_wg_evt_evt_dt on identityiqah.spt_hist_workgroup_event (event_date);
+create index spt_hist_wg_evt_evt_cat on identityiqah.spt_hist_workgroup_event (event_category);
+create index spt_hist_wg_evt_evt_type on identityiqah.spt_hist_workgroup_event (event_type);
+create index spt_hist_wg_evt_prp_nm_ci on identityiqah.spt_hist_workgroup_event (property_name);
+create index spt_hist_wg_evt_qry_prop1 on identityiqah.spt_hist_workgroup_event (qry_property1);
+create index spt_hist_wg_evt_qry_prop2 on identityiqah.spt_hist_workgroup_event (qry_property2);
+create index spt_hist_wg_evt_qry_prop3 on identityiqah.spt_hist_workgroup_event (qry_property3);
+create index spt_hist_wg_evt_qry_prop4 on identityiqah.spt_hist_workgroup_event (qry_property4);
+create index spt_hist_wg_evt_qry_prop5 on identityiqah.spt_hist_workgroup_event (qry_property5);
+create index spt_hist_wg_evt_qry_prop6 on identityiqah.spt_hist_workgroup_event (qry_property6);
+create index spt_hist_wg_evt_qry_prop7 on identityiqah.spt_hist_workgroup_event (qry_property7);
+create index spt_hist_wg_evt_qry_prop8 on identityiqah.spt_hist_workgroup_event (qry_property8);
+create index spt_hist_wg_evt_qry_prop9 on identityiqah.spt_hist_workgroup_event (qry_property9);
+create index spt_hist_wg_evt_qry_prop10 on identityiqah.spt_hist_workgroup_event (qry_property10);
+
+create table identityiqah.spt_hist_identity_req_capture (
+    id varchar(32) not null,
+    created bigint,
+    modified bigint,
+    significant_modified bigint,
+    patch_doc_parent varchar(32),
+    identity_id varchar(32) not null,
+    identity_name varchar(128) not null,
+    transform_type varchar(10) not null,
+    effective_date bigint not null,
+    extended_to_date bigint,
+    json longtext,
+    json_format varchar(255),
+    smart_hash varchar(40),
+    full_hash varchar(40),
+    deleted bit,
+    attributes longtext,
+    identity_request_id varchar(32),
+    type varchar(128),
+    end_date bigint,
+    requester_id varchar(32),
+    requester_display_name varchar(255),
+    primary key (id)
+ ) engine=InnoDB;
+
+ create index spt_patch_doc_parent_idreq on identityiqah.spt_hist_identity_req_capture (patch_doc_parent);
+ create index spt_hist_idreq_eff_dt on identityiqah.spt_hist_identity_req_capture (effective_date);
+ create index spt_hist_idreq_ext_dt on identityiqah.spt_hist_identity_req_capture (extended_to_date);
+ create index spt_hist_idreq_deleted on identityiqah.spt_hist_identity_req_capture (deleted);
+ create index spt_hist_idreq_id on identityiqah.spt_hist_identity_req_capture (identity_request_id);
+ create index spt_hist_idreq_type_ci on identityiqah.spt_hist_identity_req_capture (type);
+ create index spt_hist_idreq_end_dt on identityiqah.spt_hist_identity_req_capture (end_date);
+ create index spt_hist_idreq_reqr_id on identityiqah.spt_hist_identity_req_capture (requester_id);
+ create index spt_hist_idreq_reqr_name_ci on identityiqah.spt_hist_identity_req_capture (requester_display_name);
+
+create table identityiqah.spt_hist_identity_req_item_capture (
+    id varchar(32) not null,
+    created bigint,
+    modified bigint,
+    significant_modified bigint,
+    patch_doc_parent varchar(32),
+    transform_type varchar(10) not null,
+    effective_date bigint not null,
+    extended_to_date bigint,
+    json longtext,
+    json_format varchar(255),
+    smart_hash varchar(40),
+    full_hash varchar(40),
+    identity_id varchar(32) not null,
+    identity_name varchar(128) not null,
+    identity_entitlement_id varchar(32),
+    deleted bit,
+    attributes longtext,
+    native_identity varchar(450),
+    name varchar(255),
+    value varchar(450),
+    identity_request_item_id varchar(32),
+    identity_request_id varchar(32),
+    type varchar(128),
+    application_name varchar(128),
+    operation varchar(128),
+    owner_name varchar(128),
+    approver_name varchar(128),
+    requester_name varchar(128),
+    requester_id varchar(32),
+    assignment_id varchar(40),
+    provisioning_state varchar(128),
+    compilation_status varchar(128),
+    approval_state varchar(128),
+    identity_request_capture_id varchar(32),
+    idx integer,
+    primary key (id)
+ ) engine=InnoDB;
+
+ create index spt_patch_doc_parent_reqitem on identityiqah.spt_hist_identity_req_item_capture (patch_doc_parent);
+ create index spt_hist_idri_eff_dt on identityiqah.spt_hist_identity_req_item_capture (effective_date);
+ create index spt_hist_idri_ext_dt on identityiqah.spt_hist_identity_req_item_capture (extended_to_date);
+ create index spt_hist_idri_iid on identityiqah.spt_hist_identity_req_item_capture (identity_id);
+ create index spt_hist_idri_iname_ci on identityiqah.spt_hist_identity_req_item_capture (identity_name);
+ create index spt_hist_idri_ieid on identityiqah.spt_hist_identity_req_item_capture (identity_entitlement_id);
+ create index spt_hist_idri_deleted on identityiqah.spt_hist_identity_req_item_capture (deleted);
+ create index spt_hist_idri_nativeid_ci on identityiqah.spt_hist_identity_req_item_capture (native_identity(255));
+ create index spt_hist_idri_name_ci on identityiqah.spt_hist_identity_req_item_capture (name);
+ create index spt_hist_idri_value_ci on identityiqah.spt_hist_identity_req_item_capture (value);
+ create index spt_hist_idri_iri_id on identityiqah.spt_hist_identity_req_item_capture (identity_request_item_id);
+ create index spt_hist_idri_ir_id on identityiqah.spt_hist_identity_req_item_capture (identity_request_id);
+ create index spt_hist_idri_type_ci on identityiqah.spt_hist_identity_req_item_capture (type);
+ create index spt_hist_idri_appName_ci on identityiqah.spt_hist_identity_req_item_capture (application_name);
+ create index spt_hist_idri_ownername_ci on identityiqah.spt_hist_identity_req_item_capture (owner_name);
+ create index spt_hist_idri_approvername_ci on identityiqah.spt_hist_identity_req_item_capture (approver_name);
+ create index spt_hist_idri_reqname_ci on identityiqah.spt_hist_identity_req_item_capture (requester_name);
+ create index spt_hist_idri_reqid on identityiqah.spt_hist_identity_req_item_capture (requester_id);
+ create index spt_hist_idri_assgid on identityiqah.spt_hist_identity_req_item_capture (assignment_id);
+ create index spt_hist_idri_pstate on identityiqah.spt_hist_identity_req_item_capture (provisioning_state);
+ create index spt_hist_idri_astate on identityiqah.spt_hist_identity_req_item_capture (approval_state);
+ create index spt_hist_idri_compStat on identityiqah.spt_hist_identity_req_item_capture (compilation_status);
+
+ alter table identityiqah.spt_hist_identity_req_item_capture
+     add constraint FK6dn4yl1mqiub2ejxsgms1vex8
+         foreign key (identity_request_capture_id)
+             references identityiqah.spt_hist_identity_req_capture (id);
+
+create table identityiqah.spt_hist_object_config_capture (
+   id varchar(32) not null,
+   created bigint,
+   modified bigint,
+   significant_modified bigint,
+   patch_doc_parent varchar(32),
+   object_config_id varchar(32) not null,
+   object_config_name varchar(128) not null,
+   transform_type varchar(10) not null,
+   effective_date bigint not null,
+   extended_to_date bigint,
+   json longtext,
+   json_format varchar(255),
+   smart_hash varchar(40),
+   full_hash varchar(40),
+   primary key (id)
+) engine=InnoDB;
+
+create index spt_hist_oc_patch_doc_parent on identityiqah.spt_hist_object_config_capture (patch_doc_parent);
+create index spt_hist_oc_cap_eff_dt on identityiqah.spt_hist_object_config_capture (effective_date);
+create index spt_hist_oc_cap_ext_dt on identityiqah.spt_hist_object_config_capture (extended_to_date);
+
+create table identityiqah.spt_hist_database_version (
+    name varchar(255) not null,
+    system_version varchar(128),
+    schema_version varchar(128),
+    primary key (name)
+) engine=InnoDB;
+
+
+--
+-- This is necessary to maintain the schema version. DO NOT REMOVE.
+--
+insert into identityiqah.spt_hist_database_version (system_version,name) values ('8.4-00','main');
+update identityiqah.spt_hist_database_version set schema_version = '8.4-87' where name = 'main';
+
+--
+-- ACCESS HISTORY upgrade end
+--
+
+-- DO NOT REMOVE OR MODIFY BLOCK
+-- CONTEXT-SWITCH: dataSource
+-- DO NOT REMOVE OR MODIFY BLOCK
+
+--
+-- This is necessary to maintain the schema version. DO NOT REMOVE.
+--
+update identityiq.spt_database_version set schema_version = '8.4-87' where name = 'main';

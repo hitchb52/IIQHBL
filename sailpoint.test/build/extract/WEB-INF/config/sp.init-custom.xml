@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE sailpoint PUBLIC 'sailpoint.dtd' 'sailpoint.dtd'>
+<sailpoint>
+  <ImportAction name='include' value='custom/Application/ad.xml'/>
+  <ImportAction name='include' value='custom/ServiceDefinition/SSB_PluginImporterService.xml'/>
+</sailpoint>

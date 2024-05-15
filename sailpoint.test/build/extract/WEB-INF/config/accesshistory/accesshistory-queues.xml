@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+  ~ (c) Copyright 2023 SailPoint Technologies, Inc., All Rights Reserved.
+  -->
+
+<!DOCTYPE sailpoint PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<sailpoint>
+  <ImportAction name="merge">
+    <Configuration name="AccessHistoryConfiguration">
+      <Attributes>
+        <Map>
+          <entry key="internalProcessingQueue" value="queue://accessHistoryProcessingQueue" />
+          <entry key="messageTimeToLiveInMinutes" value="60" />
+          <!-- destinationQueue is referenced by DataExtract -->
+          <entry key="destinationQueue" value="queue://accessHistoryExtractedObjects" />
+        </Map>
+      </Attributes>
+    </Configuration>
+  </ImportAction>
+</sailpoint>

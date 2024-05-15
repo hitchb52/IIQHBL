@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" lang="en-us" xml:lang="en-us" class="_Skins_IIQ_Side_Nav" data-mc-search-type="Stem" data-mc-help-system-file-name="index.xml" data-mc-path-to-help-system="../" data-mc-has-content-body="True" data-mc-toc-path="[%=System.LinkedTitle%]|[%=System.LinkedTitle%]" data-mc-target-type="WebHelp2" data-mc-runtime-file-type="Topic;Default" data-mc-preload-images="false" data-mc-in-preview-mode="false" data-mc-medium="Online">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="msapplication-config" content="../Skins/Favicons/browserconfig.xml" />
+        <meta name="robots" content="all" />
+        <link rel="apple-touch-icon" sizes="180x180" href="../Skins/Favicons/apple-touch-icon.png" />
+        <link rel="shortcut icon" href="../Skins/Favicons/SailPoint-LogoIcon-RGB-Color.png" />
+        <link rel="icon" sizes="704x704" href="../Skins/Favicons/SailPoint-LogoIcon-RGB-Color.png" />
+        <link rel="icon" sizes="704x704" href="../Skins/Favicons/SailPoint-LogoIcon-RGB-Color.png" />
+        <link rel="icon" sizes="251x251" href="../Skins/Favicons/SailPoint-Logo-Icon.ico" /><title>Configuring Single Sign-On to IdentityIQ from Microsoft Teams</title>
+        <!-- Google Tag Manager -->
+        <!-- End Google Tag Manager -->
+        <link href="../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../Skins/Default/Stylesheets/Components/Tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../Skins/Default/Stylesheets/Components/Mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../Skins/Default/Stylesheets/Components/Print.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../Skins/Fluid/stylesheets/foundation.6.2.3.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../Skins/Fluid/stylesheets/styles.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../Skins/Fluid/stylesheets/tablet.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../Skins/Fluid/stylesheets/mobile.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../Skins/Fluid/stylesheets/print.css" rel="stylesheet" type="text/css" data-mc-generated="True" />
+        <link href="../zresources/tablestyles/breadcrumb_table.css" rel="stylesheet" data-mc-stylesheet-type="table" />
+        <style>/*&lt;meta /&gt;*/
+
+.button.previous-topic-button
+{
+	-pie-background: linear-gradient(#ffffff, #ececec);
+}
+
+.button.next-topic-button
+{
+	-pie-background: linear-gradient(#ffffff, #ececec);
+}
+
+.button.print-button
+{
+	-pie-background: linear-gradient(#ffffff, #ececec);
+}
+
+.button.expand-all-button
+{
+	-pie-background: linear-gradient(#ffffff, #ececec);
+}
+
+.button.collapse-all-button
+{
+	-pie-background: linear-gradient(#ffffff, #ececec);
+}
+
+.needs-pie
+{
+	behavior: url('../resources/Scripts/PIE-no-motw.htc');
+}
+
+</style>
+        <link href="../zresources/stylesheets/iiq_stylesheet.css" rel="stylesheet" type="text/css" />
+        <link rel="apple-touch-icon" sizes="180x180" href="../Skins/Favicons/apple-touch-icon.png" />
+        <link rel="shortcut icon" href="../Skins/Favicons/SailPoint-LogoIcon-RGB-Color.png" />
+        <link rel="icon" sizes="704x704" href="../Skins/Favicons/SailPoint-LogoIcon-RGB-Color.png" />
+        <link rel="icon" sizes="704x704" href="../Skins/Favicons/SailPoint-LogoIcon-RGB-Color.png" />
+        <link rel="icon" sizes="251x251" href="../Skins/Favicons/SailPoint-Logo-Icon.ico" />
+        <script src="../resources/Scripts/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../resources/Scripts/purify.min.js" type="text/javascript" defer="defer">
+        </script>
+        <script src="../resources/Scripts/require.min.js" type="text/javascript" defer="defer">
+        </script>
+        <script src="../resources/Scripts/require.config.js" type="text/javascript" defer="defer">
+        </script>
+        <script src="../resources/Scripts/foundation.6.2.3_custom.js" type="text/javascript" defer="defer">
+        </script>
+        <script src="../resources/Scripts/plugins.min.js" type="text/javascript" defer="defer">
+        </script>
+        <script src="../resources/Scripts/MadCapAll.js" type="text/javascript" defer="defer">
+        </script>
+        <script>/*<![CDATA[*/(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+			new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+		})(window,document,'script','dataLayer','GTM-TSD78J');/*]]>*/</script>
+    </head>
+    <body>
+        <div class="foundation-wrap off-canvas-wrapper">
+            <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper="">
+                <aside class="off-canvas position-right" role="navigation" id="offCanvas" data-off-canvas="" data-position="right" data-mc-ignore="true">
+                    <ul class="off-canvas-drilldown vertical menu off-canvas-list" data-drilldown="" data-mc-back-link="Back" data-mc-css-tree-node-expanded="is-drilldown-submenu-parent" data-mc-css-tree-node-collapsed="is-drilldown-submenu-parent" data-mc-css-sub-menu="vertical menu slide-in-right is-drilldown-submenu" data-mc-include-indicator="False" data-mc-include-icon="False" data-mc-include-parent-link="True" data-mc-include-back="True" data-mc-defer-expand-event="True" data-mc-expand-event="click.zf.drilldown" data-mc-toc="True">
+                    </ul>
+                </aside>
+                <div class="off-canvas-content inner-wrap" data-off-canvas-content="">
+                    <div data-sticky-container="" class="title-bar-container">
+                        <nav class="title-bar tab-bar sticky" role="banner" data-sticky="" data-options="marginTop:0" style="width:100%" data-sticky-on="only screen and (max-device-width: 1279px)" data-mc-ignore="true"><a class="skip-to-content fluid-skip showOnFocus" href="#">Skip To Main Content</a>
+                            <div class="middle title-bar-section outer-row clearfix">
+                                <div class="menu-icon-container relative clearfix">
+                                    <div class="central-account-wrapper">
+                                        <div class="central-dropdown"><a class="central-account-drop"><span class="central-account-image"></span><span class="central-account-text">Account</span></a>
+                                            <div class="central-dropdown-content"><a class="MCCentralLink central-dropdown-content-settings">Settings</a>
+                                                <hr class="central-separator" /><a class="MCCentralLink central-dropdown-content-logout">Logout</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="menu-icon" aria-label="Show Navigation Panel" data-toggle="offCanvas"><span></span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="title-bar-layout outer-row">
+                                <div class="logo-wrapper"><a class="logo" href="https://documentation.sailpoint.com" alt="Logo"></a>
+                                </div>
+                                <div class="navigation-wrapper nocontent">
+                                    <ul class="navigation clearfix" role="navigation" data-mc-css-tree-node-has-children="has-children" data-mc-css-sub-menu="sub-menu" data-mc-expand-event="mouseenter" data-mc-top-nav-menu="True" data-mc-max-depth="3" data-mc-include-icon="False" data-mc-include-indicator="False" data-mc-include-children="True" data-mc-include-siblings="True" data-mc-include-parent="True" data-mc-toc="True">
+                                        <li class="placeholder" style="visibility:hidden"><a>placeholder</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="central-account-wrapper">
+                                    <div class="central-dropdown"><a class="central-account-drop"><span class="central-account-image"></span><span class="central-account-text">Account</span></a>
+                                        <div class="central-dropdown-content"><a class="MCCentralLink central-dropdown-content-settings">Settings</a>
+                                            <hr class="central-separator" /><a class="MCCentralLink central-dropdown-content-logout">Logout</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="nav-search-wrapper">
+                                    <div class="nav-search row">
+                                        <form class="search" action="#">
+                                            <div class="search-bar search-bar-container needs-pie">
+                                                <input class="search-field needs-pie" type="search" aria-label="Search Field" placeholder="Search" />
+                                                <div class="search-filter-wrapper"><span class="invisible-label" id="search-filters-label">Filter: </span>
+                                                    <div class="search-filter" aria-haspopup="true" aria-controls="sf-content" aria-expanded="false" aria-label="Search Filter" title="All Files" role="button" tabindex="0">
+                                                    </div>
+                                                    <div class="search-filter-content" id="sf-content">
+                                                        <ul>
+                                                            <li>
+                                                                <button class="mc-dropdown-item" aria-labelledby="search-filters-label filterSelectorLabel-00001"><span id="filterSelectorLabel-00001">All Files</span>
+                                                                </button>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="search-submit-wrapper" dir="ltr">
+                                                    <div class="search-submit" title="Search" role="button" tabindex="0"><span class="invisible-label">Submit Search</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="main-section">
+                        <div class="row outer-row sidenav-layout">
+                            <nav class="sidenav-wrapper">
+                                <div class="sidenav-container">
+                                    <ul class="off-canvas-accordion vertical menu sidenav" data-accordion-menu="" data-mc-css-tree-node-expanded="is-accordion-submenu-parent" data-mc-css-tree-node-collapsed="is-accordion-submenu-parent" data-mc-css-sub-menu="vertical menu accordion-menu is-accordion-submenu nested" data-mc-include-indicator="False" data-mc-include-icon="False" data-mc-include-parent-link="False" data-mc-include-back="False" data-mc-defer-expand-event="True" data-mc-expand-event="click.zf.accordionMenu" data-mc-toc="True" data-mc-side-nav-menu="True">
+                                    </ul>
+                                </div>
+                            </nav>
+                            <div class="body-container">
+                                <div data-mc-content-body="True">
+                                    <!-- Google Tag Manager (noscript) -->
+                                    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TSD78J" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+                                    </noscript>
+                                    <!-- End Google Tag Manager (noscript) -->
+                                    <table style="width: 100%;border-top-left-radius: 0px 0px;border-top-right-radius: 0px 0px;border-bottom-right-radius: 0px 0px;border-bottom-left-radius: 0px 0px;border-bottom-style: none;border-bottom-width: 0px;border-bottom-color: #011e69;margin-left: 0;margin-right: auto;mc-table-style: url('../zresources/tablestyles/breadcrumb_table.css');" class="TableStyle-Breadcrumb_Table_Comm" cellspacing="0">
+                                        <col class="TableStyle-Breadcrumb_Table_Comm-Column-Column1" style="width: 150px;" />
+                                        <col class="TableStyle-Breadcrumb_Table_Comm-Column-Column1" />
+                                        <tbody>
+                                            <tr class="TableStyle-Breadcrumb_Table_Comm-Body-Body1" style="height: 30px;">
+                                                <td class="TableStyle-Breadcrumb_Table_Comm-BodyE-Column1-Body1">
+                                                    <p style="font-size: 7pt;">&#160;</p>
+                                                </td>
+                                                <td class="TableStyle-Breadcrumb_Table_Comm-BodyD-Column1-Body1">
+                                                    <p style="font-size: 6pt;">&#160;</p>
+                                                </td>
+                                            </tr>
+                                            <tr class="TableStyle-Breadcrumb_Table_Comm-Body-Body2">
+                                                <td class="TableStyle-Breadcrumb_Table_Comm-BodyB-Column1-Body2">
+                                                    <div class="buttons popup-container clearfix topicToolbarProxy _Skins_TopicToolBar mc-component nocontent" style="text-align: right; mc-topic-toolbar-items: ;">
+                                                        <div class="button-group-container-left">
+                                                            <button class="button needs-pie previous-topic-button" title="Navigate previous" disabled="true">
+                                                                <div>
+                                                                    <div role="img" class="button-icon-wrapper" aria-label="Navigate previous">
+                                                                        <div class="button-icon"> </div>
+                                                                    </div>
+                                                                </div>
+                                                            </button>
+                                                            <button class="button needs-pie next-topic-button" title="Navigate next" disabled="true">
+                                                                <div>
+                                                                    <div role="img" class="button-icon-wrapper" aria-label="Navigate next">
+                                                                        <div class="button-icon"> </div>
+                                                                    </div>
+                                                                </div>
+                                                            </button>
+                                                            <button class="button needs-pie print-button" title="Print">
+                                                                <div>
+                                                                    <div role="img" class="button-icon-wrapper" aria-label="Print">
+                                                                        <div class="button-icon"> </div>
+                                                                    </div>
+                                                                </div>
+                                                            </button>
+                                                            <button class="button needs-pie expand-all-button" data-state1-class="expand-all-button" data-state2-class="collapse-all-button" data-state2-title="Collapse all" title="Expand all" data-state1-title="Expand all">
+                                                                <div>
+                                                                    <div role="img" class="button-icon-wrapper" aria-label="Expand all">
+                                                                        <div class="button-icon"> </div>
+                                                                    </div>
+                                                                </div>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="TableStyle-Breadcrumb_Table_Comm-BodyA-Column1-Body2">
+                                                    <div class="nocontent">
+                                                        <div class="MCBreadcrumbsBox_0 breadcrumbs" role="navigation" aria-label="Breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div role="main" id="mc-main-content">
+                                        <h1>Configuring Single Sign-On to IdentityIQ from Microsoft Teams</h1>
+                                        <p>IdentityIQ Microsoft Teams notifications supports a SAML-based Single Sign-On (SSO) configuration. Enabling SSO&#160;for Microsoft Teams  and IdentityIQ is <i>optional</i>, but it is useful in that it streamlines
+the login process for Microsoft Teams users, allowing them bypass the IdentityIQ&#160;login when they click IdentityIQ links in Microsoft Teams.</p>
+                                        <p>This is a two-step process that requires configuring SAML&#160;SSO within Azure for IdentityIQ, then using some of the parameters from the Azure steps to enable SAML&#160;SSO within IdentityIQ. </p>
+                                        <h2>Single Sign-On Configuration in Azure Active Directory</h2>
+                                        <p class="important">Details on how to configure Azure components are provided in this guide as an aid to implementers; however, implementers should also consult Microsoft's documentation on Azure and Microsoft Teams to ensure that they have the most accurate and up-to-date information on these platforms. This guide only discusses actions in Azure that are required as part IdentityIQ's Microsoft Teams Notifications feature, and does not discuss more general Azure concepts or actions that may be part of setting up&#160;SSO or Microsoft Teams for your organization.</p>
+                                        <p>Follow these steps in Azure for enabling single sign-on from Microsoft Teams to IdentityIQ:</p>
+                                        <ol>
+                                            <li value="1">
+                                                <p>Navigate to your Azure Active Directory home.</p>
+                                            </li>
+                                            <li value="2">
+                                                <p>Click <b>Add &gt; Enterprise Application</b>.</p>
+                                            </li>
+                                            <li value="3">
+                                                <p>Click <b>Create your own application</b></p>
+                                            </li>
+                                            <li value="4">
+                                                <p>Enter a <b>Name</b> for your application.</p>
+                                            </li>
+                                            <li value="5">
+                                                <p>Select <b>Integrate any other application you don't find in the gallery</b>.</p>
+                                            </li>
+                                            <li value="6">
+                                                <p>Click <b>Create</b>. Once the creation process is complete, Azure opens a <b>Properties</b> page for the application.</p>
+                                            </li>
+                                            <li value="7">
+                                                <p>Define the users and groups that can use SAML&#160;SSO with IdentityIQ: </p>
+                                                <ol style="list-style-type: lower-alpha;">
+                                                    <li value="1">
+                                                        <p>In the left navigation, click <b>Users and groups</b>.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Click <b>Add users and groups</b>.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Choose the users and groups that you want to be able to use SAML&#160;SSO.</p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>Click <b>Select</b>.</p>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p>Click <b>Assign</b>.</p>
+                                                    </li>
+                                                </ol>
+                                            </li>
+                                            <li value="8">
+                                                <p>In the left navigation, click <b>Single sign-on</b>.</p>
+                                            </li>
+                                            <li value="9">
+                                                <p>Click the <b>SAML</b> tile</p>
+                                            </li>
+                                            <li value="10">
+                                                <p>In the <b>Basic SAML&#160;Configuration</b> section, click <b>Edit</b>.</p>
+                                                <ol style="list-style-type: lower-alpha;">
+                                                    <li value="1">
+                                                        <p>Add an <b>Identifier (Entity&#160;ID)</b>. This can be any  name, but typically takes the form of a URL (for example, <code>https://<i>myhost:myport</i>/identityiq</code>). This value is used to link Azure and IdentityIQ; Make a note of it to use later when configuring SSO within IdentityIQ.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Add a <b>Reply URL (Assertion Consumer Service URL)</b> and enter a URL&#160;to your IdentityIQ instance, in this format:<br /><br /> <code>https://<i>myhost:myport</i>/identityiq/login.jsf</code>. <br /><br />This URL&#160;must be accessible to your Microsoft Teams users on your network.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Enter a <b>Sign on URL</b> to your IdentityIQ instance, in this format: <br /><br /><code>https://<i>myhost:myport</i>/identityiq</code><br /><br /></p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>Do not enter a <b>Logout URL</b>.</p>
+                                                    </li>
+                                                    <li value="5">
+                                                        <p><b>Save</b> your changes.</p>
+                                                    </li>
+                                                </ol>
+                                            </li>
+                                            <li value="11">
+                                                <p>In the <b>User Attributes and Claims</b> section, click <b>Edit</b>. IdentityIQ uses the  unique identifier that is specified as the&#160;<b>Required Claim's</b> <b>Claim Name</b> to correlate IdentityIQ&#160;users to Azure/Microsoft Teams users. By default, Azure uses <code>user.userprincipalname</code> as its unique identifier, but IdentityIQ  uses <code>user.objectid</code> by default. <br /><br />To use IdentityIQ's default configuration, you must edit this value to change the <b>Source attribute</b> for the claim to <code>user.objectid</code>. <br /><br />To edit the claim to use <code>user.objectid</code> as the <b>Source attribute</b>, click <b>Edit</b>.<br /></p>
+                                                <ol style="list-style-type: lower-alpha;">
+                                                    <li value="1">
+                                                        <p>Click  the <b>Claim Name</b> to edit it.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Change the <b>Name Identifier format</b> to <b>Unspecified</b>. </p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Select <code>user.objectid</code> as the <b>Source attribute</b>.</p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p><b>Save</b> your changes.</p>
+                                                    </li>
+                                                </ol>
+                                            </li>
+                                            <li value="12">
+                                                <p>In the <b>SAML Signing Certificate</b> section, download and save the <b>Certificate (Base64)</b>. You will need this later, when configuring SAML&#160;SSO within IdentityIQ.</p>
+                                            </li>
+                                            <li value="13">
+                                                <p>In the <b>Set up <i>(name)</i></b> section, make a note of the URLs that are listed. You will need these later, when configuring SAML&#160;SSO&#160;within IdentityIQ.</p>
+                                            </li>
+                                        </ol>
+                                        <h2>Single Sign-On Configuration in IdentityIQ</h2>
+                                        <p>Follow these steps for enabling single sign-on in IdentityIQ:</p>
+                                        <ol>
+                                            <li value="1">
+                                                <p>Click the <b>gear menu &gt; Global Settings &gt; Login Configuration</b>.</p>
+                                            </li>
+                                            <li value="2">
+                                                <p>Click the	<b>SSO Configuration</b> tab.</p>
+                                            </li>
+                                            <li value="3">
+                                                <p>Check to select the <b>Enable SAML Based Single Sign-On (SSO)</b> box. This opens a panel for entering SAML Based SSO&#160;details.</p>
+                                            </li>
+                                            <li value="4">
+                                                <p>In the <b>Identity Provider Settings</b> section:</p>
+                                            </li>
+                                            <ol style="list-style-type: lower-alpha;">
+                                                <li value="1">
+                                                    <p>Enter an <b>Entity ID / Issuer</b>. This must match the <b>Azure AD Identifier</b> from the <b>Set up <i>(name)</i></b> section in Azure. (See step 13 in the previous section.)</p>
+                                                </li>
+                                                <li value="2">
+                                                    <p>Enter a <b>SSO Login URL</b>. This must match the <b>Login&#160;URL</b> from the <b>Set up <i>(name)</i></b> section in Azure. (See step 13 in the previous section.)</p>
+                                                </li>
+                                                <li value="3">
+                                                    <p>Enter your <b>Public X.509 Certificate</b>. This is the certificate you downloaded and saved in the Azure <b>SAML Signing Certificate</b> panel, as described the previous section.</p>
+                                                </li>
+                                            </ol>
+                                            <li value="5">
+                                                <p>In the <b>Service Provider (IdentityIQ) Settings</b> section:</p>
+                                                <ol style="list-style-type: lower-alpha;">
+                                                    <li value="1">
+                                                        <p>Enter an <b>Entity ID Issuer</b>. This must match the <b>Identifier (Entity&#160;ID)</b> value you set in Azure in the <b>Basic SAML&#160;Configuration</b> panel, as described in the previous section.</p>
+                                                    </li>
+                                                    <li value="2">
+                                                        <p>Enter a <b>SAML URL</b>. This must match the <b>Reply URL (Assertion Consumer Service URL)</b> you set  Azure in the <b>Basic SAML&#160;Configuration</b> panel, as described in the previous section.</p>
+                                                    </li>
+                                                    <li value="3">
+                                                        <p>Set the <b>SAML&#160;Name ID&#160;Format</b> to <b>unspecified</b>, if you are using the default identifiers as described in step 11 in the previous section. If you have opted to use a different set of values for uniquely identifying users, select the appropriate value here. </p>
+                                                    </li>
+                                                    <li value="4">
+                                                        <p>The <b>SAML&#160;Correlation Rule</b> manages the correlation of IdentityIQ identities to Azure/Teams identities. IdentityIQ provides a sample rule, <b>ExampleAzureActiveDirectorySAML</b>. This rule is included in the <code>examplerules.xml</code> file, located in the <code>[<i>install_directory</i>]WEB-INF\config</code> directory. If you are using the recommended default identifiers, you can use the sample rule without modification. If you have opted to use different unique identifiers, you can either edit this rule, or use a different rule that you have developed. </p>
+                                                    </li>
+                                                </ol>
+                                            </li>
+                                            <li value="6">
+                                                <p><b>Save</b> your changes.</p>
+                                            </li>
+                                        </ol>
+                                        <p data-mc-conditions="Default.ScreenOnly">For more information on configuring your IdentityIQ instance for SSO authentication, see <a href="../systemconfig/loginconfsso.htm" class="MCXref xref"> SSO Configuration</a>.</p>
+                                    </div>
+                                    <p style="line-height: 30px;margin-bottom: 1.12px;margin-top: 1.12px;margin-right: 1.12px;margin-left: 1.12px;" />
+                                    <p style="font-size: 8pt;color: #415364;text-align: right;">© SailPoint Technologies, Inc. All Rights Reserved.        </p>
+                                    <div class="footer" data-mc-conditions="Default.Future Content">
+                                        <p style="margin-bottom: 1.12px;margin-top: 1.12px;margin-right: 1.12px;margin-left: 20px;"><span style="font-size: 8pt; color: #ffffff;">© SailPoint Technologies, Inc. All Rights Reserved.</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><a data-close="true"></a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

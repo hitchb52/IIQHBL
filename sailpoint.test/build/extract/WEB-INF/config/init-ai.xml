@@ -1,0 +1,365 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE sailpoint PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+
+<!-- (c) Copyright 2019 SailPoint Technologies, Inc., All Rights Reserved. -->
+
+<!--
+  Initialization file for SailPoint AI Services integration with IdentityIQ.
+-->
+<sailpoint>
+
+    <!--  Rights and Capabilities -->
+    <ImportAction name="include" value="WEB-INF/config/ai/authorization-ai.xml"/>
+
+    <!--
+  Declare the AI Services module
+    -->
+    <Module name="AIServices" description="ui_identityai_module_desc">
+        <Attributes>
+            <Map>
+                <entry key="healthCheckClass" value="sailpoint.identityai.IdentityAIHealthChecker"/>
+                <entry key="enabledConfigKey" value="identityAIEnabled"/>
+            </Map>
+        </Attributes>
+    </Module>
+
+    <!--
+  By setting IdentityAIEnabled, we enable the configuration and use of AI Services.
+
+  By setting recommenderSelected, IdentityIQ will use the recommender
+  defined by the RecommenderDefinition named "AI Services", which
+  is loaded by the plugin.
+
+  If lcmEnableApprovalRecommendations is true, then LCM workflows will calculate
+  recommendations for approvals, assuming that a recommender
+  like AI Services is properly configured.
+
+  If certificationShowRecommendations is true, the default behavior is for
+  certifications to generate and show recommendations. This can be overridden on
+  a per-certification basis at creation or during Staging phase
+    -->
+    <ImportAction name="merge">
+        <Configuration name="SystemConfiguration">
+            <Attributes>
+                <Map>
+                    <entry key="identityAIEnabled" value="true" />
+                    <entry key="recommenderSelected" value="AIServices" />
+                    <entry key="lcmEnableApprovalRecommendations" value="true" />
+                    <entry key="certificationShowRecommendations" value="true" />
+                    <entry key="allowRecommendedAccess" value="true" />
+                </Map>
+            </Attributes>
+        </Configuration>
+    </ImportAction>
+
+    <ImportAction name="installPlugin" value="plugins/identityai-recommender-plugin.zip" >
+        <Attributes>
+            <Map>
+                <entry key="throwOnError" value="true"/>
+                <entry key="ignoreEqualVersion" value="true"/>
+            </Map>
+        </Attributes>
+    </ImportAction>
+
+    <ImportAction name='execute' value='sailpoint.identityai.IdentityAIMonitoringConfigUpdater'/>
+
+    <Configuration name='IdentityAIConfiguration'>
+        <Attributes>
+            <Map>
+                <entry key="readTimeoutSeconds" value="60" />
+                <entry key="connectTimeoutSeconds" value="10" />
+                <entry key="minNumIdentitiesRole" value="20" />
+                <entry key="catalogCacheTTLMillis" value="86400000" />
+                <entry key="recommendationsEndpoint" value="beta/recommendations/request" />
+                <entry key="recommendationsCatalogEndpoint" value="beta/translation-catalogs/recommender" />
+            </Map>
+        </Attributes>
+    </Configuration>
+
+    <Identity name="AIServices" protected="true" workgroup="true">
+        <Attributes>
+            <Map>
+                <entry key="displayName" value="AI Services"/>
+                <entry key="systemUser">
+                    <value>
+                        <Boolean>true</Boolean>
+                    </value>
+                </entry>
+            </Map>
+        </Attributes>
+    </Identity>
+
+    <ImportAction name="merge">
+        <Configuration name="HibernateListenerConfiguration">
+            <Attributes>
+                <Map>
+                    <entry key="IdentityAI">
+                        <value>
+                            <Map>
+                                <entry key="enabled">
+                                    <value>
+                                        <Boolean>false</Boolean>
+                                    </value>
+                                </entry>
+                                <entry key="serializeObjects">
+                                    <value>
+                                        <Boolean>false</Boolean>
+                                    </value>
+                                </entry>
+                                <entry key="sailpoint.object.Application">
+                                    <value>
+                                        <Map>
+                                            <entry key="operations">
+                                                <value>
+                                                    <Set>
+                                                        <String>TYPE_DELETE</String>
+                                                    </Set>
+                                                </value>
+                                            </entry>
+                                            <entry key="excludedUpdateAttributes">
+                                                <value>
+                                                    <List>
+                                                        <String>modified</String>
+                                                    </List>
+                                                </value>
+                                            </entry>
+                                        </Map>
+                                    </value>
+                                </entry>
+                                <entry key="sailpoint.object.Bundle">
+                                    <value>
+                                        <Map>
+                                            <entry key="operations">
+                                                <value>
+                                                    <Set>
+                                                        <String>TYPE_DELETE</String>
+                                                    </Set>
+                                                </value>
+                                            </entry>
+                                            <entry key="excludedUpdateAttributes">
+                                                <value>
+                                                    <List>
+                                                        <String>modified</String>
+                                                    </List>
+                                                </value>
+                                            </entry>
+                                        </Map>
+                                    </value>
+                                </entry>
+                                <entry key="sailpoint.object.Certification">
+                                    <value>
+                                        <Map>
+                                            <entry key="operations">
+                                                <value>
+                                                    <Set>
+                                                        <String>TYPE_DELETE</String>
+                                                    </Set>
+                                                </value>
+                                            </entry>
+                                            <entry key="excludedUpdateAttributes">
+                                                <value>
+                                                    <List>
+                                                        <String>modified</String>
+                                                        <String>lock</String>
+                                                    </List>
+                                                </value>
+                                            </entry>
+                                        </Map>
+                                    </value>
+                                </entry>
+                                <entry key="sailpoint.object.CertificationGroup">
+                                    <value>
+                                        <Map>
+                                            <entry key="operations">
+                                                <value>
+                                                    <Set>
+                                                        <String>TYPE_DELETE</String>
+                                                    </Set>
+                                                </value>
+                                            </entry>
+                                            <entry key="excludedUpdateAttributes">
+                                                <value>
+                                                    <List>
+                                                        <String>modified</String>
+                                                    </List>
+                                                </value>
+                                            </entry>
+                                        </Map>
+                                    </value>
+                                </entry>
+                                <entry key="sailpoint.object.CertificationItem">
+                                    <value>
+                                        <Map>
+                                            <entry key="operations">
+                                                <value>
+                                                    <Set>
+                                                        <String>TYPE_DELETE</String>
+                                                    </Set>
+                                                </value>
+                                            </entry>
+                                            <entry key="excludedUpdateAttributes">
+                                                <value>
+                                                    <List>
+                                                        <String>modified</String>
+                                                    </List>
+                                                </value>
+                                            </entry>
+                                        </Map>
+                                    </value>
+                                </entry>
+                                <entry key="sailpoint.object.Identity">
+                                    <value>
+                                        <Map>
+                                            <entry key="operations">
+                                                <value>
+                                                    <Set>
+                                                        <String>TYPE_DELETE</String>
+                                                    </Set>
+                                                </value>
+                                            </entry>
+                                            <entry key="excludedUpdateAttributes">
+                                                <value>
+                                                    <List>
+                                                        <String>modified</String>
+                                                        <String>lock</String>
+                                                        <String>lastLogin</String>
+                                                        <String>lastRefresh</String>
+                                                    </List>
+                                                </value>
+                                            </entry>
+                                        </Map>
+                                    </value>
+                                </entry>
+                                <entry key="sailpoint.object.IdentityRequest">
+                                    <value>
+                                        <Map>
+                                            <entry key="operations">
+                                                <value>
+                                                    <Set>
+                                                        <String>TYPE_DELETE</String>
+                                                    </Set>
+                                                </value>
+                                            </entry>
+                                            <entry key="excludedUpdateAttributes">
+                                                <value>
+                                                    <List>
+                                                        <String>modified</String>
+                                                    </List>
+                                                </value>
+                                            </entry>
+                                        </Map>
+                                    </value>
+                                </entry>
+                                <entry key="sailpoint.object.IdentityRequestItem">
+                                    <value>
+                                        <Map>
+                                            <entry key="operations">
+                                                <value>
+                                                    <Set>
+                                                        <String>TYPE_DELETE</String>
+                                                    </Set>
+                                                </value>
+                                            </entry>
+                                            <entry key="excludedUpdateAttributes">
+                                                <value>
+                                                    <List>
+                                                        <String>modified</String>
+                                                    </List>
+                                                </value>
+                                            </entry>
+                                        </Map>
+                                    </value>
+                                </entry>
+                                <entry key="sailpoint.object.Link">
+                                    <value>
+                                        <Map>
+                                            <entry key="operations">
+                                                <value>
+                                                    <Set>
+                                                        <String>TYPE_DELETE</String>
+                                                    </Set>
+                                                </value>
+                                            </entry>
+                                            <entry key="excludedUpdateAttributes">
+                                                <value>
+                                                    <List>
+                                                        <String>modified</String>
+                                                        <String>lastRefresh</String>
+                                                        <String>iiqLocked</String>
+                                                    </List>
+                                                </value>
+                                            </entry>
+                                        </Map>
+                                    </value>
+                                </entry>
+                                <entry key="sailpoint.object.ManagedAttribute">
+                                    <value>
+                                        <Map>
+                                            <entry key="operations">
+                                                <value>
+                                                    <Set>
+                                                        <String>TYPE_DELETE</String>
+                                                    </Set>
+                                                </value>
+                                            </entry>
+                                            <entry key="excludedUpdateAttributes">
+                                                <value>
+                                                    <List>
+                                                        <String>modified</String>
+                                                        <String>lastRefresh</String>
+                                                        <String>lastTargetAggregation</String>
+                                                    </List>
+                                                </value>
+                                            </entry>
+                                        </Map>
+                                    </value>
+                                </entry>
+                                <entry key="sailpoint.object.PolicyViolation">
+                                    <value>
+                                        <Map>
+                                            <entry key="operations">
+                                                <value>
+                                                    <Set>
+                                                        <String>TYPE_DELETE</String>
+                                                    </Set>
+                                                </value>
+                                            </entry>
+                                            <entry key="excludedUpdateAttributes">
+                                                <value>
+                                                    <List>
+                                                        <String>modified</String>
+                                                    </List>
+                                                </value>
+                                            </entry>
+                                        </Map>
+                                    </value>
+                                </entry>
+                                <entry key="sailpoint.object.Profile">
+                                    <value>
+                                        <Map>
+                                            <entry key="operations">
+                                                <value>
+                                                    <Set>
+                                                        <String>TYPE_DELETE</String>
+                                                    </Set>
+                                                </value>
+                                            </entry>
+                                            <entry key="excludedUpdateAttributes">
+                                                <value>
+                                                    <List>
+                                                        <String>modified</String>
+                                                    </List>
+                                                </value>
+                                            </entry>
+                                        </Map>
+                                    </value>
+                                </entry>
+                            </Map>
+                        </value>
+                    </entry>
+                </Map>
+            </Attributes>
+        </Configuration>
+    </ImportAction>
+
+</sailpoint>

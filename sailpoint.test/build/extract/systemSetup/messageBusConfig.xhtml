@@ -1,0 +1,368 @@
+<!-- (c) Copyright 2022 SailPoint Technologies, Inc., All Rights Reserved. -->
+
+<!DOCTYPE html PUBLIC
+        "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="en"
+      xmlns:sp="http://sailpoint.com/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+>
+<body>
+
+<ui:composition template="/ngAppPage.xhtml">
+  <sp:loadBundle basename="sailpoint.web.messages.iiqMessages" var="msgs"/>
+
+  <ui:define name="title">#{msgs.ui_messagebus_config_title}</ui:define>
+  <ui:define name="headerItems">
+
+    <ui:include src="../ui/scriptData.xhtml"/>
+    <script type="text/javascript">
+      SailPoint.MESSAGEBUS_CONFIG_FULL_ACCESS = #{sp:hasRight(facesContext, "FullAccessMessageBusConfiguration")};
+    </script>
+    <ui:include src="../ui/jspmInclude.xhtml"/>
+    <script type="text/javascript">
+      System.import('#{base.requestContextPath}/ui/js/messageBus/MessageBusAppModule.js');
+    </script>
+    <style type="text/css">
+      h4.settings-title {
+        float: left;
+      }
+    </style>
+  </ui:define>
+
+  <ui:define name="body">
+    <div class="sp-ui-app" ng-cloak="">
+      <div id="notificationDiv" class="sr-only" role="alert" aria-live="assertive"></div>
+      <sp-notification sp-triggerable="true"></sp-notification>
+      <div ui-view=""></div>
+      <section class="container-fluid bg-light m-t" ng-controller="messageBusConfigurationCtrl as messageBusConfigCtrl">
+        <div class="bg-white panel-body">
+        <span ng-if="messageBusConfigCtrl.errorMessages">
+            <div id="alertDiv" class="alert alert-danger" role="alert" tabindex="0">
+              <i role="presentation"
+                 class="fa fa-exclamation-triangle"></i> {{ messageBusConfigCtrl.errorMessages | spTranslate }}
+            </div>
+        </span>
+          <div class="row header">
+            <h2>{{ 'ui_messagebus_config_title' | spTranslate }}</h2>
+          </div>
+          <form name="messageBusConfigForm" novalidate="novalidate" autocomplete="off" >
+            <div id="messageBusConfigDiv" class="panel">
+              <div class="form-group page-settings-container">
+                <div class="form-group row col-sm-12">
+                  <sp-checkbox ng-model="messageBusConfigCtrl.messageBusConfig.messageBusEnabled"
+                               sp-id="messageBusEnabled"
+                               sp-display-name="{{ 'ui_messagebus_config_enable_label' | spTranslate }}"
+                               sp-label="{{ 'ui_messagebus_config_enable_label' | spTranslate }}"
+                               sp-disabled="false"
+                               class="control-label"/>
+                </div>
+
+                <div>
+                  <div class="form-group row col-sm-12">
+                    <label>
+                      {{ 'ui_messagebus_config_broker_type_label' | spTranslate }}
+                      <h:graphicImage id="imgHlpMessageBusEnabled"
+                                      width="12px" height="12px" alt="#{msgs.ui_messagebus_config_broker_type_help}"
+                                      style="cursor:pointer;padding: 0px 7px 0px 7px"
+                                      url="/images/icons/dashboard_help_16.png"/>
+                    </label><br></br>
+                    <label class="radio-inline font-bold" for="embeddedBroker">
+                      <input type="radio" id="embeddedBroker" name="brokerType" value="embedded"
+                             ng-model="messageBusConfigCtrl.messageBusConfig.brokerType"
+                             ng-disabled="messageBusConfigCtrl.isCtrlDisabled()"></input>
+                      {{ 'ui_messagebus_config_broker_type_embedded' | spTranslate }}
+                    </label>
+                    <label class="radio-inline font-bold" for="externalBroker">
+                      <input type="radio" id="externalBroker" name="brokerType" value="external"
+                             ng-model="messageBusConfigCtrl.messageBusConfig.brokerType"
+                             ng-disabled="messageBusConfigCtrl.isCtrlDisabled()"></input>
+                      {{ 'ui_messagebus_config_broker_type_external' | spTranslate }}
+                    </label>
+                  </div>
+
+                  <h4 class="settings-title">{{ 'ui_messagebus_controls' | spTranslate }}</h4>
+                  <div class="form-group row col-sm-12" >
+                    <label for="lockKeepAlivePeriod">
+                      {{ 'ui_messagebus_config_activemq_lock_keep_alive_period_label' | spTranslate }}
+                      <h:graphicImage id="imgHlpLockKeepAlivePeriod"
+                                      width="12px" height="12px" alt="#{msgs.ui_messagebus_config_activemq_lock_keep_alive_period_help}"
+                                      style="cursor:pointer;padding: 0px 7px 0px 7px"
+                                      url="/images/icons/dashboard_help_16.png"/>
+                    </label>
+                    <input type="number"
+                           min="0"
+                           ng-model="messageBusConfigCtrl.messageBusConfig.activemqConfiguration.lockKeepAlivePeriod"
+                           class="form-control ng-pristine ng-valid ng-scope ng-touched"
+                           id="lockKeepAlivePeriod"
+                           ng-disabled="messageBusConfigCtrl.isEmbeddedBrokerCtrlDisabled()"/>
+                  </div>
+
+                  <div class="form-group row col-sm-12" >
+                    <label for="lockAcquireSleepInterval">
+                      {{ 'ui_messagebus_config_activemq_lock_acquire_sleep_interval_label' | spTranslate }}
+                      <h:graphicImage id="imgHlpLockAcquireSleepInterval"
+                                      width="12px" height="12px" alt="#{msgs.ui_messagebus_config_activemq_lock_acquire_sleep_interval_help}"
+                                      style="cursor:pointer;padding: 0px 7px 0px 7px"
+                                      url="/images/icons/dashboard_help_16.png"/>
+                    </label>
+                    <input type="number"
+                           min="0"
+                           ng-model="messageBusConfigCtrl.messageBusConfig.activemqConfiguration.lockAcquireSleepInterval"
+                           class="form-control ng-pristine ng-valid ng-scope ng-touched"
+                           id="lockAcquireSleepInterval"
+                           ng-disabled="messageBusConfigCtrl.isEmbeddedBrokerCtrlDisabled()"/>
+                  </div>
+
+                  <div class="form-group row col-sm-12" >
+                    <label for="maxPageSize">
+                      {{ 'ui_messagebus_config_activemq_max_page_size_label' | spTranslate }}
+                      <h:graphicImage id="imgHlpMaxPageSize"
+                                      width="12px" height="12px" alt="#{msgs.ui_messagebus_config_activemq_max_page_size_help}"
+                                      style="cursor:pointer;padding: 0px 7px 0px 7px"
+                                      url="/images/icons/dashboard_help_16.png"/>
+                    </label>
+                    <input type="number"
+                           min="0"
+                           ng-model="messageBusConfigCtrl.messageBusConfig.activemqConfiguration.maxPageSize"
+                           class="form-control ng-pristine ng-valid ng-scope ng-touched"
+                           id="maxPageSize"
+                           ng-disabled="messageBusConfigCtrl.isEmbeddedBrokerCtrlDisabled()"/>
+                  </div>
+
+                  <div class="form-group row col-sm-12" >
+                    <label for="dlqExpirationInDays">
+                      {{ 'ui_messagebus_config_activemq_dlq_expiration_in_days_label' | spTranslate }}
+                      <h:graphicImage id="imgHlpDlqExpirationInDays"
+                                      width="12px" height="12px" alt="#{msgs.ui_messagebus_config_activemq_dlq_expiration_in_days_help}"
+                                      style="cursor:pointer;padding: 0px 7px 0px 7px"
+                                      url="/images/icons/dashboard_help_16.png"/>
+                    </label>
+                    <input type="number"
+                           min="0"
+                           ng-model="messageBusConfigCtrl.messageBusConfig.activemqConfiguration.dlqExpirationInDays"
+                           class="form-control ng-pristine ng-valid ng-scope ng-touched"
+                           id="dlqExpirationInDays"
+                           ng-disabled="messageBusConfigCtrl.isEmbeddedBrokerCtrlDisabled()"/>
+                  </div>
+
+                  <br></br>
+                  <h4 class="settings-title">{{ 'ui_activemq_connection_controls' | spTranslate }}</h4>
+                  <div class="form-group row col-sm-12">
+                    <span>
+                      <label for="clientConnectionString">
+                        {{ 'ui_messagebus_config_activemq_client_connection_label' | spTranslate }}
+                        <span class="requiredText">*</span>
+                        <h:graphicImage id="imgHlpClientConnectionString"
+                                        width="12px" height="12px" alt="#{msgs.ui_messagebus_config_activemq_client_connection_help}"
+                                        style="cursor:pointer;padding: 0px 7px 0px 7px"
+                                        url="/images/icons/dashboard_help_16.png"/>
+                      </label>
+                      <input type="text" ng-model="messageBusConfigCtrl.messageBusConfig.activemqConfiguration.clientConnectionString"
+                             class="form-control ng-pristine ng-valid ng-scope ng-touched"
+                             id="clientConnectionString" name="clientConnectionString" ng-required="true"
+                             ng-disabled="messageBusConfigCtrl.isCtrlDisabled()"/>
+                      <span id="clientConnectionString-required-error" tabindex="0" class="text-danger error-outline" aria-live="polite" aria-atomic="true" role="alert"
+                            ng-show="!messageBusConfigForm.clientConnectionString.$valid">
+                        {{ 'ui_form_required' | spTranslate }}
+                      </span>
+                    </span>
+                  </div>
+                  <div class="form-group row col-sm-12">
+                    <sp-checkbox ng-model="messageBusConfigCtrl.messageBusConfig.activemqConfiguration.optimizeFailoverEnabled"
+                                 sp-id="optimizeFailoverEnabled"
+                                 sp-display-name="{{ 'ui_messagebus_config_activemq_optimize_failover_enabled_label' | spTranslate }}"
+                                 sp-label="{{ 'ui_messagebus_config_activemq_optimize_failover_enabled_label' | spTranslate }}"
+                                 sp-disabled="messageBusConfigCtrl.isCtrlDisabled()"
+                                 class="control-label"/>
+                    <h:graphicImage id="imgHlpOptimizeFailoverEnabled"
+                                    width="12px" height="12px" alt="#{msgs.ui_messagebus_config_activemq_optimize_failover_enabled_help}"
+                                    style="cursor:pointer;padding: 0px 7px 0px 7px"
+                                    url="/images/icons/dashboard_help_16.png"/>
+                  </div>
+                  <div class="form-group row col-sm-12">
+                    <span>
+                      <label for="consumerUsername">
+                        {{ 'ui_messagebus_config_activemq_consumer_username_label' | spTranslate }}
+                        <span class="requiredText">*</span>
+                        <h:graphicImage id="imgHlpConsumerUsername"
+                                        width="12px" height="12px" alt="#{msgs.ui_messagebus_config_activemq_consumer_username_help}"
+                                        style="cursor:pointer;padding: 0px 7px 0px 7px"
+                                        url="/images/icons/dashboard_help_16.png"/>
+                      </label>
+                      <input type="text" ng-model="messageBusConfigCtrl.messageBusConfig.activemqConfiguration.consumerUsername"
+                             class="form-control ng-pristine ng-valid ng-scope ng-touched"
+                             id="consumerUsername" name="consumerUsername" ng-required="true"
+                             ng-disabled="messageBusConfigCtrl.isCtrlDisabled()"/>
+                      <span id="consumerUsername-required-error" tabindex="0" class="text-danger error-outline" aria-live="polite" aria-atomic="true" role="alert"
+                            ng-show="!messageBusConfigForm.consumerUsername.$valid">
+                        {{ 'ui_form_required' | spTranslate }}
+                      </span>
+                    </span>
+                  </div>
+                  <div class="form-group row col-sm-12">
+                    <span>
+                      <label for="consumerPassword">
+                        {{ 'ui_messagebus_config_activemq_consumer_password_label' | spTranslate }}
+                        <span class="requiredText">*</span>
+                        <h:graphicImage id="imgHlpConsumerPassword"
+                                        width="12px" height="12px" alt="#{msgs.ui_messagebus_config_activemq_consumer_password_help}"
+                                        style="cursor:pointer;padding: 0px 7px 0px 7px"
+                                        url="/images/icons/dashboard_help_16.png"/>
+                      </label>
+                      <input type="password" ng-model="messageBusConfigCtrl.messageBusConfig.activemqConfiguration.consumerPassword"
+                             class="form-control ng-pristine ng-valid ng-scope ng-touched"
+                             id="consumerPassword" name="consumerPassword" ng-required="true"
+                             ng-disabled="messageBusConfigCtrl.isCtrlDisabled()"/>
+                      <span id="consumerPassword-required-error" tabindex="0" class="text-danger error-outline" aria-live="polite" aria-atomic="true" role="alert"
+                            ng-show="!messageBusConfigForm.consumerPassword.$valid">
+                        {{ 'ui_form_required' | spTranslate }}
+                      </span>
+                    </span>
+                  </div>
+                  <div class="form-group row col-sm-12">
+                    <span>
+                      <label for="producerUsername">
+                        {{ 'ui_messagebus_config_activemq_producer_username_label' | spTranslate }}
+                        <span class="requiredText">*</span>
+                        <h:graphicImage id="imgHlpProducerUsername"
+                                        width="12px" height="12px" alt="#{msgs.ui_messagebus_config_activemq_producer_username_help}"
+                                        style="cursor:pointer;padding: 0px 7px 0px 7px"
+                                        url="/images/icons/dashboard_help_16.png"/>
+                      </label>
+                      <input type="text" ng-model="messageBusConfigCtrl.messageBusConfig.activemqConfiguration.producerUsername"
+                             class="form-control ng-pristine ng-valid ng-scope ng-touched"
+                             id="producerUsername" name="producerUsername" ng-required="true"
+                             ng-disabled="messageBusConfigCtrl.isCtrlDisabled()"/>
+                      <span id="producerUsername-required-error" tabindex="0" class="text-danger error-outline" aria-live="polite" aria-atomic="true" role="alert"
+                            ng-show="!messageBusConfigForm.producerUsername.$valid">
+                        {{ 'ui_form_required' | spTranslate }}
+                      </span>
+                    </span>
+                  </div>
+                  <div class="form-group row col-sm-12">
+                    <span>
+                      <label for="producerPassword">
+                        {{ 'ui_messagebus_config_activemq_producer_password_label' | spTranslate }}
+                        <span class="requiredText">*</span>
+                        <h:graphicImage id="imgHlpProducerPassword"
+                                        width="12px" height="12px" alt="#{msgs.ui_messagebus_config_activemq_producer_password_help}"
+                                        style="cursor:pointer;padding: 0px 7px 0px 7px"
+                                        url="/images/icons/dashboard_help_16.png"/>
+                      </label>
+                      <input type="password" ng-model="messageBusConfigCtrl.messageBusConfig.activemqConfiguration.producerPassword"
+                             class="form-control ng-pristine ng-valid ng-scope ng-touched"
+                             id="producerPassword" name="producerPassword" ng-required="true"
+                             ng-disabled="messageBusConfigCtrl.isCtrlDisabled()"/>
+                      <span id="producerPassword-required-error" tabindex="0" class="text-danger error-outline" aria-live="polite" aria-atomic="true" role="alert"
+                            ng-show="!messageBusConfigForm.producerPassword.$valid">
+                        {{ 'ui_form_required' | spTranslate }}
+                      </span>
+                    </span>
+                  </div>
+                  <div class="form-group row col-sm-12">
+                    <label for="adminUsername">
+                      {{ 'ui_messagebus_config_activemq_admin_username_label' | spTranslate }}
+                      <h:graphicImage id="imgHlpAdminUsername"
+                                      width="12px" height="12px" alt="#{msgs.ui_messagebus_config_activemq_admin_username_help}"
+                                      style="cursor:pointer;padding: 0px 7px 0px 7px"
+                                      url="/images/icons/dashboard_help_16.png"/>
+                    </label>
+                    <input type="text"
+                           ng-model="messageBusConfigCtrl.messageBusConfig.activemqConfiguration.adminUsername"
+                           class="form-control ng-pristine ng-valid ng-scope ng-not-empty ng-valid-required ng-touched"
+                           id="adminUsername"
+                           name="adminUsername"
+                           ng-disabled="messageBusConfigCtrl.isCtrlDisabled()"/>
+                  </div>
+                  <div class="form-group row col-sm-12">
+                    <label for="adminPassword">
+                      {{ 'ui_messagebus_config_activemq_admin_password_label' | spTranslate }}
+                      <h:graphicImage id="imgHlpAdminPassword"
+                                      width="12px" height="12px" alt="#{msgs.ui_messagebus_config_activemq_admin_password_help}"
+                                      style="cursor:pointer;padding: 0px 7px 0px 7px"
+                                      url="/images/icons/dashboard_help_16.png"/>
+                    </label>
+                    <input type="password"
+                           ng-model="messageBusConfigCtrl.messageBusConfig.activemqConfiguration.adminPassword"
+                           class="form-control ng-pristine ng-valid ng-scope ng-not-empty ng-valid-required ng-touched"
+                           id="adminPassword"
+                           name="adminPassword"
+                           ng-disabled="messageBusConfigCtrl.isCtrlDisabled()"/>
+                  </div>
+
+                  <h4 class="settings-title">{{ 'ui_messagebus_config_activemq_statistics_controls' | spTranslate }}</h4>
+                  <div class="form-group row col-sm-12">
+                    <label for="brokerStatsQueue">
+                      {{ 'ui_messagebus_config_activemq_broker_stats_label' | spTranslate }}
+                      <h:graphicImage id="imgHlpBrokerStatsQueue"
+                                      width="12px" height="12px" alt="#{msgs.ui_messagebus_config_activemq_broker_stats_help}"
+                                      style="cursor:pointer;padding: 0px 7px 0px 7px"
+                                      url="/images/icons/dashboard_help_16.png"/>
+                    </label>
+                    <input type="text"
+                           ng-model="messageBusConfigCtrl.messageBusConfig.brokerStatsQueue"
+                           class="form-control ng-pristine ng-valid ng-scope ng-touched"
+                           id="brokerStatsQueue"
+                           ng-disabled="messageBusConfigCtrl.isCtrlDisabled()"/>
+                  </div>
+                  <div class="form-group row col-sm-12">
+                    <label for="destinationStatsQueue">
+                      {{ 'ui_messagebus_config_activemq_destination_stats_label' | spTranslate }}
+                      <h:graphicImage id="imgHlpDestinationStatsQueue"
+                                      width="12px" height="12px" alt="#{msgs.ui_messagebus_config_activemq_destination_stats_help}"
+                                      style="cursor:pointer;padding: 0px 7px 0px 7px"
+                                      url="/images/icons/dashboard_help_16.png"/>
+                    </label>
+                    <input type="text"
+                           ng-model="messageBusConfigCtrl.messageBusConfig.destinationStatsQueue"
+                           class="form-control ng-pristine ng-valid ng-scope ng-touched"
+                           id="destinationStatsQueue"
+                           ng-disabled="messageBusConfigCtrl.isCtrlDisabled()"/>
+                  </div>
+                  <div class="form-group row col-sm-12">
+                    <label for="subscriptionStatsQueue">
+                      {{ 'ui_messagebus_config_activemq_subscription_stats_label' | spTranslate }}
+                      <h:graphicImage id="imgHlpSubscriptionStatsQueue"
+                                      width="12px" height="12px" alt="#{msgs.ui_messagebus_config_activemq_subscription_stats_help}"
+                                      style="cursor:pointer;padding: 0px 7px 0px 7px"
+                                      url="/images/icons/dashboard_help_16.png"/>
+                    </label>
+                    <input type="text"
+                           ng-model="messageBusConfigCtrl.messageBusConfig.subscriptionStatsQueue"
+                           class="form-control ng-pristine ng-valid ng-scope ng-touched"
+                           id="subscriptionStatsQueue"
+                           ng-disabled="messageBusConfigCtrl.isCtrlDisabled()"/>
+                  </div>
+                </div>
+                <br></br>
+                <div class="button-group row">
+                  <div class="col-sm-12">
+                    <button type="button"
+                            id="cancelBtn"
+                            class="btn btn-secondary"
+                            ng-click="messageBusConfigCtrl.cancel()">{{ 'ui_button_return_to_system_setup' | spTranslate }}
+                    </button>
+                    <button type="submit"
+                            id="submitBtn"
+                            class="btn btn-primary"
+                            aria-label="{{ 'ui_messagebus_button_save_aria_label' | spTranslate }}"
+                            ng-disabled="messageBusConfigForm.$invalid || !messageBusConfigCtrl.hasChanges()"
+                            ng-click="messageBusConfigCtrl.saveConfig()">{{ 'ui_messagebus_button_save_label' | spTranslate }}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
+    </div>
+  </ui:define>
+</ui:composition>
+</body>
+</html>

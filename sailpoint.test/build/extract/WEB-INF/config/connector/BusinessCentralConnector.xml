@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE ImportAction PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<ImportAction name="connectorRegistryUpdateAction">
+  <Application connector="sailpoint.connector.BusinessCentralConnector" featuresString="PROVISIONING, ENABLE, SEARCH" icon="internetIcon" name="Dynamics 365 Business Central Online" type="Dynamics 365 Business Central Online">
+    <Attributes>
+      <Map>
+        <entry key="formPath" value="BusinessCentralConnector.xhtml"/>
+        <entry key="encrypted" value="clientSecret,clientCertificate,private_key,privateKeyPassword,refresh_token,accessToken"/>
+        <entry key="pageSize" value="500"/>
+      </Map>
+    </Attributes>
+    <Schemas>
+      <Schema displayAttribute="userName" identityAttribute="userSecurityId" nativeObjectType="account" objectType="account">
+        <AttributeDefinition name="displayName" type="string">
+          <Description>Azure AD account's FirstName and LastName</Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="userName" type="string">
+          <Description>The Business Central user name</Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="state" type="string">
+          <Description>The login state of the user i.e. Enabled or Disabled.</Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="userGroups" internalName="userGroupMembers" entitlement="true" managed="true" multi="true" schemaObjectType="group" type="string">
+          <Description>UserGroup memberships of the user</Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="userPermissions" entitlement="true" managed="true" multi="true" schemaObjectType="permissionSet" type="string">
+          <Description>Permission Sets that are assigned to the user</Description>
+        </AttributeDefinition>     
+        <AttributeDefinition name="userSecurityId" type="string">
+          <Description>The unique identifier for the user</Description>
+        </AttributeDefinition>
+
+      </Schema>
+      <Schema displayAttribute="displayName" featuresString="" identityAttribute="objectId"
+              nativeObjectType="userGroup" objectType="group" >
+	<AttributeDefinition name="objectId" type="string">
+          <Description>Customized unique identifier for the group</Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="code" type="string">
+          <Description>Unique identifier for the group</Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="assignToAllNewUsers" type="boolean">
+          <Description>A flag to indicate assignement of all new users to the user group</Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="defaultProfileID" type="string">
+          <Description>Default Profile ID</Description>
+        </AttributeDefinition>
+       <AttributeDefinition name="displayName" type="string">
+          <Description>The display name for the group</Description>
+        </AttributeDefinition>
+      </Schema>
+      <Schema displayAttribute="displayName" featuresString="" identityAttribute="objectId"
+              nativeObjectType="permissionSet" objectType="permissionSet" >
+        <AttributeDefinition name="objectId" type="string">
+          <Description>Customized unique identifier for the permissionSet</Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="appId" type="string">
+          <Description>ID of the associated extension application</Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="displayName" type="string">
+          <Description>The display name for the permissionSet</Description>
+        </AttributeDefinition>
+		<AttributeDefinition name="extensionName" type="string">
+          <Description>The Extension name of the permissionSet</Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="permissionId" internalName="id" type="string">
+          <Description>The Unique identifier for the permissionSet</Description>
+        </AttributeDefinition>
+		<AttributeDefinition name="scope" type="string">
+          <Description>The scope of the permissionSet Object</Description>
+        </AttributeDefinition>
+      </Schema>
+    </Schemas>
+  </Application>
+</ImportAction>

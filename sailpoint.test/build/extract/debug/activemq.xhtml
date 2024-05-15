@@ -1,0 +1,303 @@
+<!DOCTYPE html PUBLIC
+        "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!-- (c) Copyright 2008 SailPoint Technologies, Inc., All Rights Reserved. -->
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+<body>
+
+<ui:composition template="/appPage.xhtml">
+
+    <ui:define name="title">#{msgs.title_debug_activemq_monitoring}</ui:define>
+    <ui:define name="headerItems">
+        <script type="text/javascript" defer="defer">
+            <!--//--><![CDATA[//><!--
+            helpKey = 'DEBUG_ACTIVEMQ';
+            //--><!]]>
+
+            function showLoading(e) {
+                $("#loading").show();
+                $("#subsDetails").hide();
+            }
+
+            function hideLoading() {
+                $("#loading").hide();
+            }
+
+            $(document).ready(function() {
+                $(".btnLoadStats").click()
+            });
+        </script>
+        <style type="text/css">
+          .bold-text {
+            font-weight: bold;
+          }
+
+          .col-25 {
+            min-width: 24em;
+            max-width: 24em;
+            word-wrap: break-word;
+          }
+
+          .col-30 {
+            min-width: 40em;
+          }
+
+          .col-12 {
+            min-width: 12em;
+          }
+
+          .col-5 {
+            min-width: 5em;
+          }
+
+          .col-15 {
+            min-width: 15em;
+          }
+
+          #divError.false {
+            display: none;
+          }
+
+          .margin-top-5{
+            margin-top: 1em;
+            display: block;
+          }
+
+          .subs-table-container {
+            max-width: 110em;
+            max-height: 30em;
+            overflow: auto;
+          }
+        </style>
+    </ui:define>
+
+    <ui:define name="body">
+        <c:set var="mv" value="${debug.activeMQMonitoringView}"/>
+
+        <h:form>
+            <c:if test="#{debug.brokerEnabled}">
+                <p:commandButton styleClass="btnLoadStats" style="display: none" value="Load Stats">
+                    <p:ajax listener="#{debug.onLoadStatsBtn}" update="pnlGrpBrokerDetails" />
+                </p:commandButton>
+            </c:if>
+
+            <c:if test="#{!debug.brokerEnabled}">
+                <h4><h:outputFormat value="#{msgs.debug_activemq_message_messagebus_disabled}"/></h4>
+            </c:if>
+
+            <c:if test="#{debug.brokerEnabled}">
+                <h:panelGroup id="pnlGrpBrokerDetails">
+                    <f:view>
+                        <div id="divError" class="formError #{debug.monitoringInError}">
+                            <h:outputFormat value="#{msgs[debug.monitoringErrorMessage]}" />
+                        </div>
+                        <h:messages infoClass="formInfo" warnClass="formWarn" errorClass="formError" fatalClass="formError"/>
+                    </f:view>
+
+                    <c:if test="#{not debug.monitoringInError}">
+                        <h:outputScript>
+                            $("#frmSubscriptions").show();
+                        </h:outputScript>
+                    </c:if>
+
+                    <c:if test="#{mv == null and not debug.monitoringInError}">
+                        <span><h:outputFormat value="#{msgs.debug_activemq_label_loading}"/></span>
+                    </c:if>
+
+                    <div id="brokerDetails">
+                        <c:if test="#{mv != null}">
+                            <h3><h:outputFormat value="#{msgs.debug_activemq_header_broker_info}"/></h3>
+                            <p:panelGrid id="pnlBrokerInfo" styleClass="horizPaddedTbl" border="1">
+                                <p:row>
+                                    <p:column styleClass="bold-text col-15">Broker id</p:column>
+                                    <p:column styleClass="col-30">#{mv.brokerId}</p:column>
+                                </p:row>
+
+                                <p:row>
+                                    <p:column styleClass="bold-text col-15">Broker name</p:column>
+                                    <p:column styleClass="col-30">#{mv.brokerName}</p:column>
+                                </p:row>
+
+                                <p:row>
+                                    <p:column styleClass="bold-text col-15">VM Url</p:column>
+                                    <p:column styleClass="col-30">#{mv.vm}</p:column>
+                                </p:row>
+
+                                <p:row>
+                                    <p:column styleClass="bold-text col-15">Status</p:column>
+                                    <p:column styleClass="col-30">#{mv.status}</p:column>
+                                </p:row>
+
+                                <p:row>
+                                    <p:column styleClass="bold-text col-15">Data directory</p:column>
+                                    <p:column styleClass="col-30">#{mv.dataDirectory}</p:column>
+                                </p:row>
+                            </p:panelGrid>
+
+                            <h3><h:outputFormat value="#{msgs.debug_activemq_header_connectors}"/></h3>
+                            <p:panelGrid id="pnlBrokerConnectors" styleClass="horizPaddedTbl" border="1">
+                                <f:facet name="header">
+                                    <p:row>
+                                        <p:column styleClass="bold-text col-15">Connector name</p:column>
+                                        <p:column styleClass="bold-text col-30">Binding address</p:column>
+                                    </p:row>
+                                </f:facet>
+
+                                <c:forEach items="#{mv.transportConnectors}" var="con">
+                                    <p:row>
+                                        <p:column>#{con.key}</p:column>
+                                        <p:column>#{con.value}</p:column>
+                                    </p:row>
+                                </c:forEach>
+
+                                <c:if test="#{mv.transportConnectors == null || mv.transportConnectors.size() == 0}">
+                                    <p:row>
+                                        <p:column colspan="5">
+                                            <h:outputText value="No connectors found."/>
+                                        </p:column>
+                                    </p:row>
+                                </c:if>
+                            </p:panelGrid>
+
+                            <h3><h:outputFormat value="#{msgs.debug_activemq_header_broker_stats}"/></h3>
+                            <p:panelGrid id="pnlBrokerStats" styleClass="horizPaddedTbl" border="1">
+                                <p:row>
+                                    <p:column styleClass="bold-text col-15">Memory usage</p:column>
+                                    <p:column
+                                            styleClass="col-15">#{mv.memoryPercentUsage}% of ~#{mv.memoryLimitFormatted}</p:column>
+                                </p:row>
+
+                                <p:row>
+                                    <p:column styleClass="bold-text col-15">Storage usage</p:column>
+                                    <p:column
+                                            styleClass="col-15">#{mv.storePercentUsage}% of ~#{mv.storeLimitFormatted}</p:column>
+                                </p:row>
+
+                                <p:row>
+                                    <p:column styleClass="bold-text col-15">Total message count</p:column>
+                                    <p:column styleClass="col-15">#{mv.totalMessageCount}</p:column>
+                                </p:row>
+
+                                <p:row>
+                                    <p:column styleClass="bold-text col-15">Avg message size</p:column>
+                                    <p:column styleClass="col-15">#{mv.avgMessageSizeFormatted}</p:column>
+                                </p:row>
+
+                                <p:row>
+                                    <p:column styleClass="bold-text col-15">Total enqueue count</p:column>
+                                    <p:column styleClass="col-15">#{mv.enqueueCount}</p:column>
+                                </p:row>
+
+                                <p:row>
+                                    <p:column styleClass="bold-text col-15">Total dequeue</p:column>
+                                    <p:column styleClass="col-15">#{mv.dequeueCount}</p:column>
+                                </p:row>
+
+                                <p:row>
+                                    <p:column styleClass="bold-text col-15">Total producer count</p:column>
+                                    <p:column styleClass="col-15">#{mv.producerCount}</p:column>
+                                </p:row>
+
+                                <p:row>
+                                    <p:column styleClass="bold-text col-15">Total consumer count</p:column>
+                                    <p:column styleClass="col-15">#{mv.consumerCount}</p:column>
+                                </p:row>
+                            </p:panelGrid>
+
+                            <h3><h:outputFormat value="#{msgs.debug_activemq_header_destinations}"/></h3>
+                            <p:panelGrid id="pnlQueues" styleClass="horizPaddedTbl" border="1">
+                                <f:facet name="header">
+                                    <p:row>
+                                        <p:column styleClass="bold-text col-25">Destination name</p:column>
+                                        <p:column styleClass="bold-text col-12">Destination size</p:column>
+                                        <p:column styleClass="bold-text col-12">Enqueue messages</p:column>
+                                        <p:column styleClass="bold-text col-12">Dequeue messages</p:column>
+                                        <p:column styleClass="bold-text col-12">Avg enqueue time</p:column>
+                                    </p:row>
+                                </f:facet>
+
+                                <c:forEach items="#{mv.queues}" var="queue">
+                                    <p:row>
+                                        <p:column>#{queue.destinationName}</p:column>
+                                        <p:column>#{queue.queueSize}</p:column>
+                                        <p:column>#{queue.enqueueCount}</p:column>
+                                        <p:column>#{queue.dequeueCount}</p:column>
+                                        <p:column>#{queue.formattedAvgEnqueueTime}</p:column>
+                                    </p:row>
+                                </c:forEach>
+
+                                <c:if test="#{mv.queues == null || mv.queues.size() == 0}">
+                                    <p:row>
+                                        <p:column colspan="5">
+                                            <h:outputText value="No queues found."/>
+                                        </p:column>
+                                    </p:row>
+                                </c:if>
+                            </p:panelGrid>
+                        </c:if>
+                    </div>
+                </h:panelGroup>
+            </c:if>
+        </h:form>
+
+        <c:if test="#{debug.brokerEnabled}">
+            <h:form id="frmSubscriptions" style="display: none">
+                <h3><h:outputFormat value="#{msgs.debug_activemq_header_subscriptions}"/></h3>
+
+                <p:commandButton styleClass="btn btn-primary btnShowSubs" value="#{msgs.debug_activemq_btn_label_load_subscritions}" onclick="showLoading()">
+                    <p:ajax listener="#{debug.onClickLoadSubscriptionsBtn}" update="pnlGrpSubscriptions" />
+                </p:commandButton>
+
+                <h:panelGroup id="pnlGrpSubscriptions" styleClass="margin-top-5">
+                    <div id="loading" style="display: none">
+                        <span><h:outputFormat value="#{msgs.debug_activemq_label_loading}"/></span>
+                    </div>
+                    <div id="subsDetails" class="subs-table-container">
+                        <p:panelGrid id="pnlSubs" styleClass="horizPaddedTbl" border="1" rendered="#{debug.activeMQSubscriptionViewList != null}">
+                            <f:facet name="header">
+                                <p:row>
+                                    <p:column styleClass="bold-text col-25">Destination name</p:column>
+                                    <p:column styleClass="bold-text col-25">Client Id</p:column>
+                                    <p:column styleClass="bold-text col-25">Connection Id</p:column>
+                                    <p:column styleClass="bold-text col-15">Selector</p:column>
+                                    <p:column styleClass="bold-text col-5">Prefetch Size</p:column>
+                                    <p:column styleClass="bold-text col-5">Dequeue Counter</p:column>
+                                    <p:column styleClass="bold-text col-5">Enqueue Counter</p:column>
+                                </p:row>
+                            </f:facet>
+
+                            <c:forEach items="#{debug.activeMQSubscriptionViewList}" var="subs">
+                                <p:row>
+                                    <p:column styleClass="col-25">#{subs.destinationName}</p:column>
+                                    <p:column styleClass="col-25">#{subs.clientId}</p:column>
+                                    <p:column styleClass="col-25">#{subs.connectionId}</p:column>
+                                    <p:column styleClass="col-15">#{subs.selector}</p:column>
+                                    <p:column styleClass="col-5">#{subs.prefetchSize}</p:column>
+                                    <p:column styleClass="col-5">#{subs.dequeueCounter}</p:column>
+                                    <p:column styleClass="col-5">#{subs.enqueueCounter}</p:column>
+                                </p:row>
+                            </c:forEach>
+
+                            <c:if test="#{debug.activeMQSubscriptionViewList == null || debug.activeMQSubscriptionViewList.size() == 0}">
+                                <p:row>
+                                    <p:column colspan="7">
+                                        <h:outputText value="No subscriptions found."/>
+                                    </p:column>
+                                </p:row>
+                            </c:if>
+                        </p:panelGrid>
+                    </div>
+                </h:panelGroup>
+            </h:form>
+        </c:if>
+    </ui:define>
+</ui:composition>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+  ~ (c) Copyright 2023 SailPoint Technologies, Inc., All Rights Reserved.
+  -->
+
+<!DOCTYPE sailpoint PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<sailpoint>
+  <ImportAction name="merge">
+    <Configuration name="DataExtractConfiguration">
+      <Attributes>
+        <Map>
+          <entry key="internalProcessingQueue" value="queue://dataExtractProcessingQueue" />
+          <entry key="messageTimeToLiveInMinutes" value="60" />
+        </Map>
+      </Attributes>
+    </Configuration>
+  </ImportAction>
+</sailpoint>

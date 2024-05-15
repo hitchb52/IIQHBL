@@ -1,0 +1,12 @@
+CONNECT TO IIQ;
+
+DROP TABLESPACE identityiq_ts;
+DROP BUFFERPOOL identityiq_bp;
+DROP SCHEMA identityiq RESTRICT;
+COMMIT;
+
+Disconnect IIQ;
+
+DROP DATABASE iiq;
+
+

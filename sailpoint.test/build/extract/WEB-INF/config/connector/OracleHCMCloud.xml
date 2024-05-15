@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE ImportAction PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<ImportAction name="connectorRegistryUpdateAction">
+  <Application connector="sailpoint.connector.oraclehcmcloud.OracleHCMCloudConnector" featuresString="SEARCH, DISCOVER_SCHEMA" icon="internetIcon" name="Oracle HCM Cloud" type="Oracle HCM Cloud">
+    <Attributes>
+      <Map>
+           <entry key="formPath" value="OracleHCMCloud.xhtml"/>
+           <entry key="encrypted" value="sftpPassword, pgpPrivateKey, pgpPrivateKeyPassword, apiPassword" />
+           <entry key="schemaToAttributeMapping">
+            <value>
+              <Map>
+                <entry key="WORK_EMAIL">
+                  <value>
+                    <Map>
+                      <entry key="atomFeedAttributeName" value="EmailAddress"/>
+                      <entry key="workersAttributeName" value="emails.EmailAddress"/>
+                    </Map>
+                  </value>
+                </entry>
+                <entry key="ASSIGNMENT_EFFECTIVE_END_DATE">
+                  <value>
+                    <Map>
+                      <entry key="atomFeedAttributeName" value="EffectiveEndDate"/>
+                      <entry key="workersAttributeName" value="workRelationships.assignments.EffectiveEndDate"/>
+                    </Map>
+                  </value>
+                </entry>
+                <entry key="ASSIGNMENT_EFFECTIVE_START_DATE">
+                  <value>
+                    <Map>
+                      <entry key="atomFeedAttributeName" value="EffectiveStartDate"/>
+                      <entry key="workersAttributeName" value="workRelationships.assignments.EffectiveStartDate"/>
+                    </Map>
+                  </value>
+                </entry>
+                <entry key="ASSIGNMENT_ID">
+                  <value>
+                    <Map>
+                      <entry key="atomFeedAttributeName" value="AssignmentId"/>
+                      <entry key="workersAttributeName" value="workRelationships.assignments.AssignmentId"/>
+                    </Map>
+                  </value>
+                </entry>
+                  <entry key="ASSIGNMENT_PRIMARY_FLAG">
+                  <value>
+                    <Map>
+                      <entry key="atomFeedAttributeName" value="PrimaryAssignmentFlag"/>
+                      <entry key="workersAttributeName" value="workRelationships.assignments.PrimaryFlag"/>
+                    </Map>
+                  </value>
+                </entry>
+                <entry key="ASSIGNMENT_STATUS">
+                  <value>
+                    <Map>
+                      <entry key="atomFeedAttributeName" value="AssignmentStatusType"/>
+                      <entry key="workersAttributeName" value="workRelationships.assignments.AssignmentStatusType"/>
+                    </Map>
+                  </value>
+                </entry>
+                <entry key="ASSIGNMENT_ACTION_CODE">
+                  <value>
+                    <Map>
+                      <entry key="atomFeedAttributeName" value="ActionCode"/>
+                      <entry key="workersAttributeName" value="workRelationships.assignments.ActionCode"/>
+                    </Map>
+                  </value>
+                </entry>
+                   <entry key="HIRE_DATE">
+                  <value>
+                    <Map>
+                      <entry key="atomFeedAttributeName" value="StartDate"/>
+                      <entry key="workersAttributeName" value="workRelationships.DateStart"/>
+                    </Map>
+                  </value>
+                </entry>
+                <entry key="PERIOD_OF_SERVICE_ID">
+                  <value>
+                    <Map>
+                      <entry key="atomFeedAttributeName" value="PeriodOfServiceId"/>
+                      <entry key="workersAttributeName" value="workRelationships.PeriodOfServiceId"/>
+                    </Map>
+                  </value>
+                </entry>
+                <entry key="PERSON_NUMBER">
+                  <value>
+                    <Map>
+                      <entry key="atomFeedAttributeName" value="PersonNumber"/>
+                      <entry key="workersAttributeName" value="PersonNumber"/>
+                    </Map>
+                  </value>
+                </entry>
+                <entry key="TERMINATION_DATE">
+                  <value>
+                    <Map>
+                      <entry key="atomFeedAttributeName" value="ActualTerminationDate"/>
+                      <entry key="workersAttributeName" value="workRelationships.TerminationDate"/>
+                    </Map>
+                  </value>
+                </entry>
+                <entry key="WORKER_TYPE">
+                  <value>
+                    <Map>
+                      <entry key="atomFeedAttributeName" value="PeriodType"/>
+                      <entry key="workersAttributeName" value="workRelationships.WorkerType"/>
+                    </Map>
+                  </value>
+                </entry>
+                <entry key="WORKRELATIONSHIP_PRIMARY_FLAG">
+                  <value>
+                    <Map>
+                      <entry key="atomFeedAttributeName" value="PrimaryWorkRelationFlag"/>
+                      <entry key="workersAttributeName" value="workRelationships.PrimaryFlag"/>
+                    </Map>
+                  </value>
+                </entry>
+              </Map>
+            </value>
+          </entry>
+      </Map>
+    </Attributes>
+    <Schemas>
+      <Schema displayAttribute="PERSON_NUMBER" identityAttribute="PERSON_NUMBER" nativeObjectType="account" objectType="account">
+        <AttributeDefinition name="PERSON_NUMBER" remediationModificationType="None" required="true" type="string">
+          <Description>Unique identifier of Person</Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="WORK_EMAIL" remediationModificationType="None" type="string">
+          <Description>Primary work email of person</Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="TERMINATION_DATE" remediationModificationType="None" type="string">
+          <Description>Person's termination date</Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="WORKER_TYPE" remediationModificationType="None" type="string">
+          <Description>Person type i.e. Employee, Contingent</Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="ASSIGNMENT_EFFECTIVE_START_DATE" remediationModificationType="None" type="string">
+          <Description>Person's assignment effective start date.</Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="ASSIGNMENT_EFFECTIVE_END_DATE" remediationModificationType="None" type="string">
+          <Description>Person's assignment effective end date</Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="ASSIGNMENT_STATUS" remediationModificationType="None" type="string">
+          <Description>Person's assignment status</Description>
+        </AttributeDefinition>
+	    <AttributeDefinition name="ASSIGNMENT_ID" remediationModificationType="None" type="string">
+          <Description>Person's assignment Id</Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="ASSIGNMENT_PRIMARY_FLAG" remediationModificationType="None" type="string">
+          <Description>Person's assignment primary flag</Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="ASSIGNMENT_ACTION_CODE" remediationModificationType="None" type="string">
+          <Description>Person's assignment's action code</Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="HIRE_DATE" remediationModificationType="None" type="string">
+          <Description>Person's hire date</Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="PERIOD_OF_SERVICE_ID" remediationModificationType="None" required="true" type="string">
+          <Description>Person's work relationship period of service ID.</Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="WORKRELATIONSHIP_PRIMARY_FLAG" remediationModificationType="None" type="string">
+          <Description>Person's work relationship primary flag</Description>
+        </AttributeDefinition>
+      </Schema>
+    </Schemas>
+  </Application>
+</ImportAction>

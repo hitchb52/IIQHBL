@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE ImportAction PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<ImportAction name="connectorRegistryUpdateAction">
+  <Application connector="sailpoint.connector.DynamicsFOConnector" featuresString="PROVISIONING, ENABLE, SEARCH" 
+  				icon="internetIcon" name="Dynamics 365 FO" type="Dynamics 365 FO">
+
+    <Attributes>
+      <Map>
+        <entry key="formPath" value="DynamicsFinanceOperationsConnector.xhtml"/>
+        <entry key="encrypted" value="clientSecret,clientCertificate,private_key,privateKeyPassword,accessToken"/>
+        <entry key="pageSize" value="500"/>
+      </Map>
+    </Attributes>
+
+    <Schemas>
+      <Schema displayAttribute="userName" identityAttribute="userId" nativeObjectType="account" objectType="account">
+        <AttributeDefinition name="userId" type="string">
+          <Description>Unique identifier for the User</Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="userName" type="string">
+          <Description>Name of the User</Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="userEmail" type="string">
+          <Description>E-mail of the User</Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="organizationRoles" entitlement="true" managed="true" multi="true" schemaObjectType="group" type="string">
+          <Description>OrganizationRoles assigned to the User</Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="networkDomain" type="string">
+          <Description>The domain of the User</Description>
+        </AttributeDefinition>
+		<AttributeDefinition name="accountType" type="string">
+          <Description>The account type of the User</Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="company" type="string">
+          <Description>The unique Id of the company to which the User belongs to</Description>
+        </AttributeDefinition>
+		<AttributeDefinition name="automaticOrganizationRoles" multi="true" type="string">
+          <Description>Automatically assigned OrganizationRoles to the User</Description>
+        </AttributeDefinition>
+      </Schema>
+
+      <Schema displayAttribute="organizationRoleName" featuresString="" identityAttribute="organizationRoleIdentifier"
+              nativeObjectType="organizationRole" objectType="group" >
+        <AttributeDefinition name="securityRoleIdentifier" type="string">
+          <Description>Unique identifier for the Security Role</Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="legalEntityId" type="string">
+          <Description>Unique identifier of the Legal Entity</Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="organizationRoleIdentifier" type="string">
+          <Description>Unique identifier for the OrganizationRole</Description>
+        </AttributeDefinition>
+       <AttributeDefinition name="roleDescription" type="string">
+          <Description>Describes the Security Role function briefly</Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="securityRoleUserLicenseType" type="string">
+          <Description>License type required by the User for the Security Role</Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="securityRoleAccessToSensitiveData" type="boolean">
+          <Description>Suggests if the security role provides access to the sensitive data</Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="securityRoleContextString" type="string">
+          <Description>Displays the context string applied to the security role</Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="legalEntityName" type="string">
+          <Description>Name of the Legal Entity</Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="securityRoleName" type="string">
+          <Description>Name of the Security Role</Description>
+        </AttributeDefinition>
+        <AttributeDefinition name="organizationRoleName" type="string">
+          <Description>Name of the OrganizationRole</Description>
+        </AttributeDefinition>
+      </Schema>
+
+    </Schemas>
+  </Application>
+</ImportAction>
